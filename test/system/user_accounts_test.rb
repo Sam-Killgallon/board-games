@@ -25,4 +25,27 @@ class UserAccountsTest < ApplicationSystemTestCase
     click_on 'Sign out'
     assert_selector 'p', text: 'Signed out successfully'
   end
+
+  test 'changing account info' do
+    user = create(:user)
+    new_email = 'my_new_email@example.com'
+    login_as(user)
+
+    # Edit account details
+    visit root_url
+    click_on user.email
+    fill_in 'Email', with: new_email
+    fill_in 'Current password', with: user.password
+    click_on 'Update'
+    assert_selector 'p', text: 'Your account has been updated successfully'
+
+    click_on 'Sign out'
+
+    # Check that we can sign in using the new details
+    visit new_user_session_url
+    fill_in 'Email', with: new_email
+    fill_in 'Password', with: user.password
+    click_on 'Log in'
+    assert_selector 'p', text: 'Signed in successfully'
+  end
 end

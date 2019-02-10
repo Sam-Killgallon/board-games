@@ -1,3 +1,7 @@
+<% if user_signed_in? %>
+  <%= link_to current_user.email, edit_user_registration_path %>
+<% end %>
+
 <h1>Board Games</h1>
 <div>
   <%= link_to 'Sign up', new_user_registration_path %>
