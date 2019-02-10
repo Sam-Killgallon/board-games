@@ -1,0 +1,11 @@
+AllCops:
+  Exclude:
+    - bin/*
+    - db/*
+    - node_modules/*
+
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 120
