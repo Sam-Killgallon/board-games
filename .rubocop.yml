@@ -4,6 +4,9 @@ AllCops:
     - db/**/*
     - node_modules/**/*
 
+Style/Documentation:
+  Enabled: false
+
 Rails:
   Enabled: true
 
