@@ -20,19 +20,14 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-class User < ApplicationRecord
-  enum role: %i[user admin]
-  after_initialize :set_default_role, if: :new_record?
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+FactoryBot.define do
+  factory :user do
+    email { 'test@example.com' }
+    password { 'password' }
+    password_confirmation { 'password' }
+  end
 
-  validates :role, presence: true
-
-  private
-
-  def set_default_role
-    self.role ||= :user
+  trait :admin do
+    role { :admin }
   end
 end
