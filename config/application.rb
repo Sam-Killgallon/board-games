@@ -21,7 +21,6 @@ module BoardGames
     config.generators do |generate|
       generate.helper false
       generate.assets false
-      generate.fixtures false
     end
   end
 end
