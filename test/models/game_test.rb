@@ -46,4 +46,10 @@ class GameTest < ActiveSupport::TestCase
     assert_not game.valid?
     assert_includes game.errors[:max_players], "can't be blank"
   end
+
+  test 'invalid when max_players is less than min_players' do
+    game = Game.new(min_players: 3, max_players: 2)
+    assert_not game.valid?
+    assert_includes game.errors[:max_players], 'must be greater than or equal to min players (3)'
+  end
 end
