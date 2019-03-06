@@ -9,7 +9,7 @@ class UserAccountsTest < ApplicationSystemTestCase
     fill_in 'Email', with: 'test@example.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
-    click_on 'Sign up'
+    within('#new_user') { click_on 'Sign up' }
     assert_selector 'p', text: 'Welcome! You have signed up successfully'
   end
 
