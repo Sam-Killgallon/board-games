@@ -11,13 +11,13 @@ class Admin::GamesControllerTest < ActionDispatch::IntegrationTest
     @game = create(:game)
   end
 
-  not_found_for_normal_users('game index')  { get admin_games_url }
-  not_found_for_normal_users('new game')    { get new_admin_game_url }
-  not_found_for_normal_users('create game') { post admin_games_url }
-  not_found_for_normal_users('show game')   { get admin_game_url(@game) }
-  not_found_for_normal_users('edit game')   { get edit_admin_game_url(@game) }
-  not_found_for_normal_users('update game') { patch admin_game_url(@game) }
-  not_found_for_normal_users('delete game') { delete admin_game_url(@game) }
+  not_found_for_normal_users('admin game index')  { get admin_games_url }
+  not_found_for_normal_users('admin new game')    { get new_admin_game_url }
+  not_found_for_normal_users('admin create game') { post admin_games_url }
+  not_found_for_normal_users('admin show game')   { get admin_game_url(@game) }
+  not_found_for_normal_users('admin edit game')   { get edit_admin_game_url(@game) }
+  not_found_for_normal_users('admin update game') { patch admin_game_url(@game) }
+  not_found_for_normal_users('admin delete game') { delete admin_game_url(@game) }
 
   test 'should get index' do
     get admin_games_url

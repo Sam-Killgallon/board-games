@@ -18,7 +18,7 @@
 
 FactoryBot.define do
   factory :game do
-    title { 'MyString' }
+    sequence(:title) { |n| "game_title_#{n}" }
     min_players { 1 }
     max_players { 1 }
   end
