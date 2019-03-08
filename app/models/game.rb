@@ -24,4 +24,8 @@ class Game < ApplicationRecord
     greater_than_or_equal_to: ->(game) { game.min_players },
     message: ->(game, _data) { "must be greater than or equal to min players (#{game.min_players})" }
   }
+
+  # This destroys the join record, not the actual user
+  has_many :user_games, dependent: :destroy
+  has_many :users, through: :user_games
 end
