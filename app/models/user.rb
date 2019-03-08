@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :role, presence: true
   # This destroys the join record, not the actual game
   has_many :user_games, dependent: :destroy
-  has_many :games, through: :user_games
+  has_many :games, -> { readonly }, through: :user_games
 
   private
 
