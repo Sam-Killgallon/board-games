@@ -28,4 +28,5 @@ class Game < ApplicationRecord
   # This destroys the join record, not the actual user
   has_many :user_games, dependent: :destroy
   has_many :users, through: :user_games
+  has_many :game_sessions, dependent: :restrict_with_exception
 end
