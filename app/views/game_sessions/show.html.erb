@@ -1,0 +1,17 @@
+<%= form_with model: @game_session, method: :patch, local: true do |form| %>
+  <h3>Players</h3>
+  <ul>
+    <% @game_session.users.each do |user| %>
+      <%= form.hidden_field :user_emails, value: user.email, multiple: true %>
+      <li><%= user.email %></p>
+    <% end %>
+  </ul>
+  <%= form.label :user_emails, 'Player email' %>
+  <%= form.email_field :user_emails, multiple: true %>
+  <%= form.submit 'Add player' %>
+
+  <h3>Available games</h3>
+  <% @game_session.available_games.each do |game| %>
+    <li><%= game.title %></li>
+  <% end %>
+<% end %>

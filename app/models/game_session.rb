@@ -19,7 +19,12 @@
 #  fk_rails_...  (game_id => games.id)
 #
 
-
 class GameSession < ApplicationRecord
-  belongs_to :game
+  belongs_to :game, optional: true
+  has_many :user_game_sessions, dependent: :destroy
+  has_many :users, through: :user_game_sessions
+
+  def available_games
+    users.includes(:games).flat_map(&:games).uniq
+  end
 end

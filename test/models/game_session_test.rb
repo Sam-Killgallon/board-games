@@ -19,7 +19,6 @@
 #  fk_rails_...  (game_id => games.id)
 #
 
-
 require 'test_helper'
 
 class GameSessionTest < ActiveSupport::TestCase

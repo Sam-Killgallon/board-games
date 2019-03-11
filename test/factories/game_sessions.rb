@@ -19,10 +19,8 @@
 #  fk_rails_...  (game_id => games.id)
 #
 
-
 FactoryBot.define do
   factory :game_session do
     scheduled_at { '2019-03-09 01:30:05' }
-    game { nil }
   end
 end

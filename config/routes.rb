@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :games, only: %i[index new create destroy]
+  resources :game_sessions, only: %i[create show update]
 
   namespace :admin do
     root 'home#index'
