@@ -12,14 +12,6 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.find(params[:id])
   end
 
-  def update
-    game_session = GameSession.find(params[:id])
-    users = User.where(email: game_session_params[:user_emails])
-    game_session.users = users
-
-    redirect_to game_session
-  end
-
   private
 
   def require_access!
