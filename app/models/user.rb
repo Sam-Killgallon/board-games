@@ -35,6 +35,14 @@ class User < ApplicationRecord
   has_many :user_game_sessions, dependent: :destroy
   has_many :game_sessions, through: :user_game_sessions
 
+  def past_game_sessions
+    game_sessions.past
+  end
+
+  def upcoming_game_sessions
+    game_sessions.upcoming.or(game_sessions.unscheduled)
+  end
+
   private
 
   def set_default_role

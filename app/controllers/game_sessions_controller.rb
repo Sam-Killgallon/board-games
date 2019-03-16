@@ -2,6 +2,7 @@
 
 class GameSessionsController < ApplicationController
   before_action :require_user!
+  before_action :require_access!, except: [:create]
 
   def create
     redirect_to GameSession.create!(users: [current_user])
@@ -20,6 +21,10 @@ class GameSessionsController < ApplicationController
   end
 
   private
+
+  def require_access!
+    current_user.game_sessions.exists?(params[:id]) || not_found
+  end
 
   def game_session_params
     params.require(:game_session).permit(user_emails: [])

@@ -21,6 +21,16 @@
 
 FactoryBot.define do
   factory :game_session do
-    scheduled_at { '2019-03-09 01:30:05' }
+    trait :unscheduled do
+      scheduled_at { nil }
+    end
+
+    trait :past do
+      scheduled_at { 15.days.ago }
+    end
+
+    trait :upcoming do
+      scheduled_at { 5.days.from_now }
+    end
   end
 end

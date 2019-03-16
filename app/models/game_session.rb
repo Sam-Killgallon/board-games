@@ -24,6 +24,10 @@ class GameSession < ApplicationRecord
   has_many :user_game_sessions, dependent: :destroy
   has_many :users, through: :user_game_sessions
 
+  scope :past, -> { where('scheduled_at <= ?', Time.current) }
+  scope :upcoming, -> { where('scheduled_at >= ?', Time.current) }
+  scope :unscheduled, -> { where(scheduled_at: nil) }
+
   def available_games
     users.includes(:games).flat_map(&:games).uniq
   end
