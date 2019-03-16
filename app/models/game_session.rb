@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: game_sessions
@@ -12,7 +11,8 @@
 #
 # Indexes
 #
-#  index_game_sessions_on_game_id  (game_id)
+#  index_game_sessions_on_game_id       (game_id)
+#  index_game_sessions_on_scheduled_at  (scheduled_at)
 #
 # Foreign Keys
 #
