@@ -5,13 +5,17 @@ class GameSessions::UsersController < ApplicationController
   before_action :require_access!
 
   def update
-    users = User.where(email: params[:emails])
+    users = User.where(email: users_params[:emails])
     game_session.users = users
 
     redirect_to game_session
   end
 
   private
+
+  def users_params
+    params.require(:users).permit(emails: [])
+  end
 
   def game_session
     return @game_session if defined?(@game_session)

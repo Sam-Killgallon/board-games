@@ -26,7 +26,7 @@ class GameSessions::UsersControllerTest < ActionDispatch::IntegrationTest
     user_emails = users.map(&:email)
 
     put "/game_sessions/#{@game_session.id}/users", params: {
-      emails: user_emails
+      users: { emails: user_emails }
     }
 
     assert_redirected_to "/game_sessions/#{GameSession.last.id}"
