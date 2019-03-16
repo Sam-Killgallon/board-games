@@ -1,0 +1,25 @@
+<h1>New Game</h1>
+
+<%= form_with(url: games_path, local: true) do |form| %>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Title</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= form.collection_check_boxes(:games, @games, :id, :title, include_hidden: false) do |b| %>
+        <tr>
+          <td><%= b.check_box %></td>
+          <td><%= b.label %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= form.submit %>
+<% end %>
+
+<%= link_to 'Back', games_path %>

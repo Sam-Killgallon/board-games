@@ -1,0 +1,27 @@
+<h1>Games</h1>
+
+<%if @games.empty? %>
+  <p>You don't have any games! Add some using the button below</p>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @games.each do |game| %>
+        <tr>
+          <td><%= game.title %></td>
+          <td><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+
+<%= link_to 'Add game', new_game_path %>
