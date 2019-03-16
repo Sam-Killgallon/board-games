@@ -22,16 +22,14 @@ class GameSessions::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'adds the supplied users to the game' do
-    user_emails = create_list(:user, 2).map(&:email) << @current_user.email
+    users = create_list(:user, 2) << @current_user
+    user_emails = users.map(&:email)
 
     put "/game_sessions/#{@game_session.id}/users", params: {
       emails: user_emails
     }
 
     assert_redirected_to "/game_sessions/#{GameSession.last.id}"
-    follow_redirect!
-    user_emails.each do |email|
-      assert_match email, @response.body
-    end
+    assert_equal users.map(&:id).sort, @game_session.reload.users.map(&:id).sort
   end
 end
