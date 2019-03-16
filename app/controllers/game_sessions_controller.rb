@@ -12,6 +12,12 @@ class GameSessionsController < ApplicationController
     @game_session = GameSession.find(params[:id])
   end
 
+  def update
+    game_session = GameSession.find(params[:id])
+    game_session.update(game_session_params)
+    redirect_to game_session
+  end
+
   private
 
   def require_access!
@@ -19,6 +25,6 @@ class GameSessionsController < ApplicationController
   end
 
   def game_session_params
-    params.require(:game_session).permit(user_emails: [])
+    params.require(:game_session).permit(:game_id)
   end
 end

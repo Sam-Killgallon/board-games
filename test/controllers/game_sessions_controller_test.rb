@@ -14,6 +14,7 @@ class GameSessionsControllerTest < ActionDispatch::IntegrationTest
 
   not_found_without_user('get /game_session/:id') { get "/game_sessions/#{@game_session.id}" }
   not_found_without_user('post /game_sessions') { post '/game_sessions' }
+  not_found_without_user('put /game_sessions') { put '/game_sessions' }
 
   test 'creates a new session' do
     post '/game_sessions'
@@ -35,5 +36,15 @@ class GameSessionsControllerTest < ActionDispatch::IntegrationTest
   test 'shows the session' do
     get "/game_sessions/#{@game_session.id}"
     assert_response :success
+  end
+
+  test 'updates the session' do
+    game = create(:game)
+    put "/game_sessions/#{@game_session.id}", params: {
+      game_session: { game_id: game.id }
+    }
+
+    assert_redirected_to @game_session
+    assert_equal game, @game_session.reload.game
   end
 end

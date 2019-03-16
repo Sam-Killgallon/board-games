@@ -9,9 +9,15 @@
   <%= form.label :emails, 'Player email' %>
   <%= form.email_field :emails, multiple: true %>
   <%= form.submit 'Add player' %>
+<% end %>
 
-  <h3>Available games</h3>
-  <% @game_session.available_games.each do |game| %>
-    <li><%= game.title %></li>
+<% if @game_session.game %>
+  <h5>Chosen game: <%= @game_session.game.title %></h5>
+<% end %>
+<h3>Available games</h3>
+<% @game_session.available_games.each do |game| %>
+  <%= form_with model: @game_session, method: :patch, local: true do |form| %>
+    <%= form.hidden_field :game_id, value: game.id %>
+    <li><%= game.title %> <%= form.submit 'Choose game' %></li>
   <% end %>
 <% end %>

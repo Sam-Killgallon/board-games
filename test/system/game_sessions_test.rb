@@ -65,5 +65,10 @@ class GameSessionsTest < ApplicationSystemTestCase
     unowned_games.each do |game|
       assert_no_text game.title
     end
+
+    assert_no_text 'Chosen game'
+    chosen_game = friend2_games.first
+    find('li', text: chosen_game.title).click_on 'Choose game'
+    assert_text "Chosen game: #{chosen_game.title}"
   end
 end
