@@ -1,0 +1,40 @@
+version: '3'
+
+volumes:
+  postgres_data:
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        RAILS_ENV: development
+    image: samkillgallon/board-games
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: webpack_dev_server
+    ports:
+      - '3000:80'
+    volumes:
+      - .:/app:cached
+    depends_on:
+      - postgres
+      - webpack_dev_server
+
+  postgres:
+    image: postgres:11.2
+    volumes:
+      - postgres_data:/var/lib/postgresql/data:cached
+
+  webpack_dev_server:
+    command: ./bin/webpack-dev-server
+    build:
+      context: .
+      args:
+        RAILS_ENV: development
+    image: samkillgallon/board-games
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: '0.0.0.0'
+    ports:
+      - '3035:3035'
+    volumes:
+      - .:/app:cached
