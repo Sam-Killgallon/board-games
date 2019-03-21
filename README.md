@@ -1,24 +1,11 @@
-# README
+# Board Games
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Web app for organising board game events
 
-Things you may want to cover:
+## Setup
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Install docker
+- Clone repo
+- Create an admin user `docker-compose run --rm web rails users:create_admin`
+- `docker-compose up`
+- Visit `localhost:3000` and log in!
