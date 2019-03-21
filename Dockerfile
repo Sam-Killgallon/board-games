@@ -16,7 +16,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
       # For chromedriver, which gets installed by the 'chromedriver-helper' gem
       libnss3 \
       # For browser tests
-      chromium
+      chromium \
+      vim
 
 RUN mkdir -p /app
 WORKDIR /app
