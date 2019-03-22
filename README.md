@@ -6,6 +6,8 @@ Web app for organising board game events
 
 - Install docker
 - Clone repo
+- Run the tests `docker-compose run --rm web rails test:system test`
 - Create an admin user `docker-compose run --rm web rails users:create_admin`
-- `docker-compose up`
+- Start the app `docker-compose up`
 - Visit `localhost:3000` and log in!
+- Shutdown the app when finished `docker-compose down`
