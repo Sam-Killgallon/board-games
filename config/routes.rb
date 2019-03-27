@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'home#index'
     resources :games
+    resources :users, only: %i[index show]
   end
 end

@@ -1,0 +1,19 @@
+<h1>Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.id, [:admin, user] %></td>
+        <td><%= link_to user.email, [:admin, user] %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
