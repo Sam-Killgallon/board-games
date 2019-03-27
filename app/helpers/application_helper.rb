@@ -9,6 +9,12 @@ module ApplicationHelper
       "In #{time_ago_in_words(time)}"
     when :past
       "#{time_ago_in_words(time)} ago"
+    when :flexible
+      if (Time.current > time)
+        scheduled_time_in_words(time, context: :past)
+      else
+        scheduled_time_in_words(time, context: :future)
+      end
     else
       time_ago_in_words(time)
     end

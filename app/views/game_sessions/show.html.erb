@@ -14,10 +14,22 @@
 <% if @game_session.game %>
   <h5>Chosen game: <%= @game_session.game.title %></h5>
 <% end %>
+
 <h3>Available games</h3>
 <% @game_session.available_games.each do |game| %>
   <%= form_with model: @game_session, method: :patch, local: true do |form| %>
     <%= form.hidden_field :game_id, value: game.id %>
     <li><%= game.title %> <%= form.submit 'Choose game' %></li>
   <% end %>
+<% end %>
+
+
+<% if @game_session.scheduled_at %>
+  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at, context: :flexible) %></h5>
+<% end %>
+
+<%= form_with model: @game_session, method: :patch, local: true do |form| %>
+  <%= form.label :scheduled_at, 'Scheduled time' %>
+  <%= form.datetime_field :scheduled_at, value: @game_session.scheduled_at %>
+  <%= form.submit 'Schedule' %>
 <% end %>

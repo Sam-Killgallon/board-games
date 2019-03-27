@@ -40,11 +40,14 @@ class GameSessionsControllerTest < ActionDispatch::IntegrationTest
 
   test 'updates the session' do
     game = create(:game)
+    time = 1.day.from_now
     put "/game_sessions/#{@game_session.id}", params: {
-      game_session: { game_id: game.id }
+      game_session: { game_id: game.id, scheduled_at: time }
     }
 
     assert_redirected_to @game_session
-    assert_equal game, @game_session.reload.game
+    @game_session.reload
+    assert_equal game, @game_session.game
+    assert_in_delta time, @game_session.scheduled_at, 1.second
   end
 end

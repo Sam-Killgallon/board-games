@@ -25,6 +25,6 @@ class GameSessionsController < ApplicationController
   end
 
   def game_session_params
-    params.require(:game_session).permit(:game_id)
+    params.require(:game_session).permit(:game_id, :scheduled_at)
   end
 end

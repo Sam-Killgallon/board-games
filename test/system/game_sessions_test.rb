@@ -70,5 +70,9 @@ class GameSessionsTest < ApplicationSystemTestCase
     chosen_game = friend2_games.first
     find('li', text: chosen_game.title).click_on 'Choose game'
     assert_text "Chosen game: #{chosen_game.title}"
+
+    fill_in 'Scheduled time', with: 1.week.from_now.strftime("%m%d%Y\t%I%M%P")
+    click_on 'Schedule'
+    assert_text 'Scheduled at: In 7 days'
   end
 end
