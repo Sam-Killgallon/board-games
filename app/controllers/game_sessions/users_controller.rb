@@ -11,10 +11,17 @@ class GameSessions::UsersController < ApplicationController
     redirect_to game_session
   end
 
+  def update
+    user = User.find(params[:id])
+    user_game_session = UserGameSession.find_by(user: user, game_session: game_session)
+    user_game_session.update!(rsvp: user_params[:rsvp])
+    redirect_to game_session
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:email)
+    params.require(:user).permit(:email, :rsvp)
   end
 
   def game_session

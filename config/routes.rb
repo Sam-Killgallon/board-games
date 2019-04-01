@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :games, only: %i[index new create destroy]
   resources :game_sessions, only: %i[create show update] do
-    resources :users, only: %i[create], controller: 'game_sessions/users'
+    resources :users, only: %i[create update], controller: 'game_sessions/users'
   end
 
   namespace :admin do

@@ -1,10 +1,38 @@
+<h2>Players</h2>
+
+<h4>RSVP: <%= @current_user_game_session.rsvp.humanize %></h4>
+<%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
+  <%= form.hidden_field :rsvp, value: 'attending'  %>
+  <%= form.submit 'Attend' %>
+<% end %>
+
+<%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
+  <%= form.hidden_field :rsvp, value: 'declined' %>
+  <%= form.submit 'Decline' %>
+<% end %>
+
+<h4>Invited</h4>
+<ul id="invited">
+  <% @grouped_users['not_responded']&.each do |user| %>
+    <li><%= user.email %></p>
+  <% end %>
+</ul>
+
+<h4>Attending</h4>
+<ul id="attending">
+  <% @grouped_users['attending']&.each do |user| %>
+    <li><%= user.email %></p>
+  <% end %>
+</ul>
+
+<h4>Declined</h4>
+<ul id="declined">
+  <% @grouped_users['declined']&.each do |user| %>
+    <li><%= user.email %></p>
+  <% end %>
+</ul>
+
 <%= form_with url: game_session_users_path(@game_session), scope: :user, method: :post, local: true do |form| %>
-  <h3>Players</h3>
-  <ul>
-    <% @game_session.users.each do |user| %>
-      <li><%= user.email %></p>
-    <% end %>
-  </ul>
   <%= form.label :email, 'Player email' %>
   <%= form.email_field :email  %>
   <%= form.submit 'Add player' %>

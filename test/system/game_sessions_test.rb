@@ -75,4 +75,32 @@ class GameSessionsTest < ApplicationSystemTestCase
     click_on 'Schedule'
     assert_text 'Scheduled at: In 7 days'
   end
+
+  test 'user responds to game invitation' do
+    session_creator = create(:user)
+    session = create(:game_session, users: [session_creator, @current_user])
+
+    visit root_url
+    click_on session.id.to_s
+
+    within '#invited' do
+      assert_text @current_user.email
+      assert_text session_creator.email
+    end
+    within '#attending' do
+      assert_no_text @current_user.email
+      assert_no_text session_creator.email
+    end
+
+    click_on 'Attend'
+
+    within '#invited' do
+      assert_no_text @current_user.email
+      assert_text session_creator.email
+    end
+    within '#attending' do
+      assert_text @current_user.email
+      assert_no_text session_creator.email
+    end
+  end
 end
