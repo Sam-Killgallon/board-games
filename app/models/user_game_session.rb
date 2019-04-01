@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: user_game_sessions
@@ -12,8 +11,9 @@
 #
 # Indexes
 #
-#  index_user_game_sessions_on_game_session_id  (game_session_id)
-#  index_user_game_sessions_on_user_id          (user_id)
+#  index_user_game_sessions_on_game_session_id              (game_session_id)
+#  index_user_game_sessions_on_user_id                      (user_id)
+#  index_user_game_sessions_on_user_id_and_game_session_id  (user_id,game_session_id) UNIQUE
 #
 # Foreign Keys
 #

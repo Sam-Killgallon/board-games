@@ -12,24 +12,24 @@ class GameSessions::UsersControllerTest < ActionDispatch::IntegrationTest
     sign_in(@current_user)
   end
 
-  not_found_without_user('put /game_session/:id/users') { put "/game_sessions/#{@game_session.id}/users" }
+  not_found_without_user('put /game_session/:id/users') { post "/game_sessions/#{@game_session.id}/users" }
 
-  test 'only users that are part of the session can update it' do
-    game_session = create(:game_session, users: [])
+  test 'can only add users to a session the current user is part of' do
+    new_game_session = create(:game_session, users: [])
+    new_user = create(:user)
     assert_raises(ActionController::RoutingError) do
-      put "/game_sessions/#{game_session.id}/users"
+      post "/game_sessions/#{new_game_session.id}/users", params: {
+        user: { email: new_user.email }
+      }
     end
   end
 
-  test 'adds the supplied users to the game' do
-    users = create_list(:user, 2) << @current_user
-    user_emails = users.map(&:email)
-
-    put "/game_sessions/#{@game_session.id}/users", params: {
-      users: { emails: user_emails }
+  test 'adds user to session' do
+    new_user = create(:user)
+    post "/game_sessions/#{@game_session.id}/users", params: {
+      user: { email: new_user.email }
     }
 
-    assert_redirected_to "/game_sessions/#{GameSession.last.id}"
-    assert_equal users.map(&:id).sort, @game_session.reload.users.map(&:id).sort
+    assert_includes @game_session.reload.users, new_user
   end
 end

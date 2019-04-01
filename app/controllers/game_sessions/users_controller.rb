@@ -4,17 +4,17 @@ class GameSessions::UsersController < ApplicationController
   before_action :require_user!
   before_action :require_access!
 
-  def update
-    users = User.where(email: users_params[:emails])
-    game_session.users = users
+  def create
+    user = User.find_by!(email: user_params[:email])
+    game_session.users << user
 
     redirect_to game_session
   end
 
   private
 
-  def users_params
-    params.require(:users).permit(emails: [])
+  def user_params
+    params.require(:user).permit(:email)
   end
 
   def game_session
@@ -24,6 +24,6 @@ class GameSessions::UsersController < ApplicationController
   end
 
   def require_access!
-    current_user.game_sessions.exists?(params[:game_session_id]) || not_found
+    game_session.users.exists?(current_user.id) || not_found
   end
 end

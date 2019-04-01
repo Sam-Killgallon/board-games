@@ -1,13 +1,12 @@
-<%= form_with url: game_session_users_path(@game_session), scope: :users, method: :patch, local: true do |form| %>
+<%= form_with url: game_session_users_path(@game_session), scope: :user, method: :post, local: true do |form| %>
   <h3>Players</h3>
   <ul>
     <% @game_session.users.each do |user| %>
-      <%= form.hidden_field :emails, value: user.email, multiple: true %>
       <li><%= user.email %></p>
     <% end %>
   </ul>
-  <%= form.label :emails, 'Player email' %>
-  <%= form.email_field :emails, multiple: true %>
+  <%= form.label :email, 'Player email' %>
+  <%= form.email_field :email  %>
   <%= form.submit 'Add player' %>
 <% end %>
 
