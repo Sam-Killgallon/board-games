@@ -4,6 +4,7 @@
 # Table name: user_game_sessions
 #
 #  id              :bigint(8)        not null, primary key
+#  rsvp            :integer          default(0), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  game_session_id :bigint(8)
@@ -22,6 +23,7 @@
 #
 
 class UserGameSession < ApplicationRecord
+  enum rsvp: %i[not_responded attending declined]
   belongs_to :user
   belongs_to :game_session
 end
