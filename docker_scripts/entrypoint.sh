@@ -2,4 +2,4 @@
 set -euo pipefail
 
 rm -rf tmp/pids/*.pid
-exec bundle exec "$@"
+exec "$@"

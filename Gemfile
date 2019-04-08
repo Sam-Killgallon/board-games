@@ -29,26 +29,26 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'factory_bot_rails'
-  gem 'pry-rails'
+  gem 'byebug', '~> 11.0', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 5.0'
+  gem 'pry-rails', '~> 0.3'
 end
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', '~> 2.7'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop', '~> 0.64.0'
-  gem 'spring'
+  gem 'spring', '~> 2.0'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
 end
