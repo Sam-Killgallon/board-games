@@ -13,21 +13,21 @@
 
 <h4>Invited</h4>
 <ul id="invited">
-  <% @grouped_users['not_responded']&.each do |user| %>
+  <% @game_session.not_responded_users.each do |user| %>
     <li><%= user.email %></p>
   <% end %>
 </ul>
 
 <h4>Attending</h4>
 <ul id="attending">
-  <% @grouped_users['attending']&.each do |user| %>
+  <% @game_session.attending_users.each do |user| %>
     <li><%= user.email %></p>
   <% end %>
 </ul>
 
 <h4>Declined</h4>
 <ul id="declined">
-  <% @grouped_users['declined']&.each do |user| %>
+  <% @game_session.declined_users.each do |user| %>
     <li><%= user.email %></p>
   <% end %>
 </ul>

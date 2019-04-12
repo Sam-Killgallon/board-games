@@ -30,6 +30,19 @@ class GameSession < ApplicationRecord
   scope :unscheduled, -> { where(scheduled_at: nil) }
 
   def available_games
-    users.includes(:games).flat_map(&:games).uniq
+    # Return all distinct games which are owned by a user in this session
+    Game.joins(:ownerships).where(ownerships: { user: users }).distinct
+  end
+
+  def attending_users
+    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :attending })
+  end
+
+  def not_responded_users
+    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :not_responded })
+  end
+
+  def declined_users
+    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :declined })
   end
 end

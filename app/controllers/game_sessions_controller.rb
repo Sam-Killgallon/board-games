@@ -11,9 +11,6 @@ class GameSessionsController < ApplicationController
   def show
     @game_session = GameSession.includes(:users, :invitations).find(params[:id])
     @current_user_invitation = @game_session.invitations.find_by(user: current_user)
-    @grouped_users = @game_session.users.group_by do |user|
-      @game_session.invitations.find_by(user: user).rsvp
-    end
   end
 
   def update
