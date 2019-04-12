@@ -27,7 +27,7 @@ WORKDIR /app
 # will be cached unless changes to one of those two files
 # are made.
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install --jobs 8 --frozen
+RUN gem install bundler && bundle install --jobs 8 --frozen && rm /usr/local/bundle/config
 
 COPY package.json yarn.lock ./
 RUN yarn install --pure-lockfile
