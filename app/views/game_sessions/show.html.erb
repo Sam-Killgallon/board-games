@@ -1,6 +1,6 @@
 <h2>Players</h2>
 
-<h4>RSVP: <%= @current_user_game_session.rsvp.humanize %></h4>
+<h4>RSVP: <%= @current_user_invitation.rsvp.humanize %></h4>
 <%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
   <%= form.hidden_field :rsvp, value: 'attending'  %>
   <%= form.submit 'Attend' %>

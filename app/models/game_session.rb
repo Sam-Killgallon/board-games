@@ -22,8 +22,8 @@
 
 class GameSession < ApplicationRecord
   belongs_to :game, optional: true
-  has_many :user_game_sessions, dependent: :destroy
-  has_many :users, through: :user_game_sessions
+  has_many :invitations, dependent: :destroy
+  has_many :users, through: :invitations
 
   scope :past, -> { where('scheduled_at <= ?', Time.current) }
   scope :upcoming, -> { where('scheduled_at >= ?', Time.current) }

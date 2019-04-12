@@ -9,10 +9,10 @@ class GameSessionsController < ApplicationController
   end
 
   def show
-    @game_session = GameSession.includes(:users, :user_game_sessions).find(params[:id])
-    @current_user_game_session = @game_session.user_game_sessions.find_by(user: current_user)
+    @game_session = GameSession.includes(:users, :invitations).find(params[:id])
+    @current_user_invitation = @game_session.invitations.find_by(user: current_user)
     @grouped_users = @game_session.users.group_by do |user|
-      @game_session.user_game_sessions.find_by(user: user).rsvp
+      @game_session.invitations.find_by(user: user).rsvp
     end
   end
 

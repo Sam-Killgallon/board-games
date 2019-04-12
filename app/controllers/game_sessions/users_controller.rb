@@ -13,8 +13,8 @@ class GameSessions::UsersController < ApplicationController
 
   def update
     user = User.find(params[:id])
-    user_game_session = UserGameSession.find_by(user: user, game_session: game_session)
-    user_game_session.update!(rsvp: user_params[:rsvp])
+    invitation = Invitation.find_by(user: user, game_session: game_session)
+    invitation.update!(rsvp: user_params[:rsvp])
     redirect_to game_session
   end
 

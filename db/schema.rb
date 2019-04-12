@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_12_195013) do
+ActiveRecord::Schema.define(version: 2019_04_12_200055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2019_04_12_195013) do
     t.index ["title"], name: "index_games_on_title", unique: true
   end
 
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "game_session_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "rsvp", default: 0, null: false
+    t.index ["game_session_id"], name: "index_invitations_on_game_session_id"
+    t.index ["user_id", "game_session_id"], name: "index_invitations_on_user_id_and_game_session_id", unique: true
+    t.index ["user_id"], name: "index_invitations_on_user_id"
+  end
+
   create_table "ownerships", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "game_id"
@@ -41,17 +52,6 @@ ActiveRecord::Schema.define(version: 2019_04_12_195013) do
     t.index ["game_id"], name: "index_ownerships_on_game_id"
     t.index ["user_id", "game_id"], name: "index_ownerships_on_user_id_and_game_id", unique: true
     t.index ["user_id"], name: "index_ownerships_on_user_id"
-  end
-
-  create_table "user_game_sessions", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "game_session_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "rsvp", default: 0, null: false
-    t.index ["game_session_id"], name: "index_user_game_sessions_on_game_session_id"
-    t.index ["user_id", "game_session_id"], name: "index_user_game_sessions_on_user_id_and_game_session_id", unique: true
-    t.index ["user_id"], name: "index_user_game_sessions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 2019_04_12_195013) do
   end
 
   add_foreign_key "game_sessions", "games"
+  add_foreign_key "invitations", "game_sessions"
+  add_foreign_key "invitations", "users"
   add_foreign_key "ownerships", "games"
   add_foreign_key "ownerships", "users"
-  add_foreign_key "user_game_sessions", "game_sessions"
-  add_foreign_key "user_game_sessions", "users"
 end
