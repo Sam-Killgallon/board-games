@@ -43,7 +43,7 @@
 <% end %>
 
 <h3>Available games</h3>
-<% @game_session.available_games.each do |game| %>
+<% @game_session.available_games.order(:title).each do |game| %>
   <%= form_with model: @game_session, method: :patch, local: true do |form| %>
     <%= form.hidden_field :game_id, value: game.id %>
     <li><%= game.title %> <%= form.submit 'Choose game' %></li>
