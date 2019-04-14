@@ -29,4 +29,6 @@ class Game < ApplicationRecord
   has_many :ownerships, dependent: :destroy
   has_many :users, through: :ownerships
   has_many :game_sessions, dependent: :restrict_with_exception
+
+  default_scope -> { order(:title) }
 end

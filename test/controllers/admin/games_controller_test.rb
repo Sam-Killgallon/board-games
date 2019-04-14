@@ -36,7 +36,8 @@ class Admin::GamesControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to admin_game_url(Game.last)
+    game = Game.find_by(title: 'Foo')
+    assert_redirected_to admin_game_url(game)
   end
 
   test 'should show game' do

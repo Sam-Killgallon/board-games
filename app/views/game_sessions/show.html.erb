@@ -1,5 +1,19 @@
 <h2>Players</h2>
 
+<% if @game_session.game %>
+  <h5>Chosen game: <%= @game_session.game.title %></h5>
+<% end %>
+
+<% if @game_session.scheduled_at %>
+  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at, context: :flexible) %></h5>
+<% end %>
+
+<%= form_with model: @game_session, method: :patch, local: true do |form| %>
+  <%= form.label :scheduled_at, 'Scheduled time' %>
+  <%= form.datetime_field :scheduled_at, value: @game_session.scheduled_at %>
+  <%= form.submit 'Schedule' %>
+<% end %>
+
 <h4>RSVP: <%= @current_user_invitation.rsvp.humanize %></h4>
 <%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
   <%= form.hidden_field :rsvp, value: 'attending'  %>
@@ -38,25 +52,10 @@
   <%= form.submit 'Add player' %>
 <% end %>
 
-<% if @game_session.game %>
-  <h5>Chosen game: <%= @game_session.game.title %></h5>
-<% end %>
-
 <h3>Available games</h3>
-<% @game_session.available_games.order(:title).each do |game| %>
+<% @game_session.available_games.each do |game| %>
   <%= form_with model: @game_session, method: :patch, local: true do |form| %>
     <%= form.hidden_field :game_id, value: game.id %>
     <li><%= game.title %> <%= form.submit 'Choose game' %></li>
   <% end %>
-<% end %>
-
-
-<% if @game_session.scheduled_at %>
-  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at, context: :flexible) %></h5>
-<% end %>
-
-<%= form_with model: @game_session, method: :patch, local: true do |form| %>
-  <%= form.label :scheduled_at, 'Scheduled time' %>
-  <%= form.datetime_field :scheduled_at, value: @game_session.scheduled_at %>
-  <%= form.submit 'Schedule' %>
 <% end %>
