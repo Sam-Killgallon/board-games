@@ -9,7 +9,7 @@ class GamesController < ApplicationController
 
   def new
     # Only return list games that the user doesn't already have
-    @games = Game.all.order(:title) - current_user.games
+    @games = Game.where.not(id: current_user.game_ids).order(:title)
   end
 
   def create
