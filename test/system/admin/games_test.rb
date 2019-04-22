@@ -15,7 +15,7 @@ class Admin::GamesTest < ApplicationSystemTestCase
     click_on 'Add new game'
 
     new_game_details = {
-      title: 'Betrayl at house on the hill',
+      title: 'Betrayal at house on the hill',
       min_players: '3',
       max_players: '6'
     }

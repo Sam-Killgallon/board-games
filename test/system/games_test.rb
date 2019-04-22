@@ -5,10 +5,10 @@ require 'application_system_test_case'
 class GamesTest < ApplicationSystemTestCase
   setup do
     [
-      'Betrayl at house on the hill',
+      'Betrayal at house on the hill',
       'Game of Thrones',
       'Splendor',
-      'Betrayl legacy',
+      'Betrayal legacy',
       'Munchkin',
       'Ticket to ride'
     ].each { |title| create(:game, title: title) }
