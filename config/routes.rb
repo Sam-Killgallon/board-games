@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   root 'home#index'
   devise_for :users
 
-  resources :games, only: %i[index new create destroy]
+  resources :games, only: %i[index new update destroy] do
+    get 'search', on: :collection
+  end
+
   resources :game_sessions, only: %i[create show update] do
     resources :users, only: %i[create update], controller: 'game_sessions/users'
   end

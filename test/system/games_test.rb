@@ -16,18 +16,23 @@ class GamesTest < ApplicationSystemTestCase
     login_as(create(:user))
   end
 
-  test 'user adds owned games' do
+  test 'user searchs for owned game' do
     visit root_url
     click_on 'Games'
     # Message to prompt user to add games
     assert_text "You don't have any games! Add some using the button below"
     click_on 'Add game'
 
-    check 'Game of Thrones'
-    check 'Munchkin'
-    check 'Ticket to ride'
+    find('input[type="search"').set("game o\n")
+    find('tr', text: 'Game of Thrones').click_on 'Add game'
 
-    click_on 'Save'
+    find('input[type="search"').set("chki\n")
+    find('tr', text: 'Munchkin').click_on 'Add game'
+
+    find('input[type="search"').set("ride\n")
+    find('tr', text: 'Ticket to ride').click_on 'Add game'
+
+    click_on 'Back'
 
     # There should not longer be a message prompting use to add games
     assert_no_text "You don't have any games! Add some using the button below"

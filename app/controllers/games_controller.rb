@@ -3,6 +3,11 @@
 class GamesController < ApplicationController
   before_action :require_user!
 
+  def search
+    searched = Game.arel_table[:title].matches("%#{params[:q]}%")
+    @games = Game.where(searched).where.not(id: current_user.game_ids)
+  end
+
   def index
     @games = current_user.games
   end
@@ -12,11 +17,9 @@ class GamesController < ApplicationController
     @games = Game.where.not(id: current_user.game_ids)
   end
 
-  def create
-    games = Game.find(params[:games])
-    current_user.games << games
-
-    redirect_to games_path
+  def update
+    game = Game.find(params[:id])
+    current_user.games << game
   end
 
   def destroy
