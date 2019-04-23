@@ -71,7 +71,9 @@ class GameSessionsTest < ApplicationSystemTestCase
     find('li', text: chosen_game.title).click_on 'Choose game'
     assert_text "Chosen game: #{chosen_game.title}"
 
-    fill_in 'Scheduled time', with: 1.week.from_now.strftime("%m%d%Y\t%I%M%P")
+    target_date = 1.week.from_now
+    find('input#game_session_scheduled_at').click
+    find("[aria-label=\"#{target_date.strftime('%B %d, %Y')}\"]", visible: false).click
     click_on 'Schedule'
     assert_text 'Scheduled at: In 7 days'
   end

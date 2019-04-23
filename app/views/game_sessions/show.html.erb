@@ -10,7 +10,7 @@
 
 <%= form_with model: @game_session, method: :patch, local: true do |form| %>
   <%= form.label :scheduled_at, 'Scheduled time' %>
-  <%= form.datetime_field :scheduled_at, value: @game_session.scheduled_at %>
+  <%= form.datetime_field :scheduled_at, data: { flatpickr: true } %>
   <%= form.submit 'Schedule' %>
 <% end %>
 
