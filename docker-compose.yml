@@ -13,7 +13,7 @@ services:
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack_dev_server
     ports:
-      - '3000:80'
+      - '3000:3000'
     volumes:
       - .:/app:cached
     depends_on:

@@ -35,16 +35,14 @@ RUN yarn install --pure-lockfile
 # Copy the main application.
 COPY . ./
 
-# Only precompile assets when building for production
+# Only precompile assets when building for production, workaround
+# SECRET_KEY_BASE being required when trying to compile assets
 ARG RAILS_ENV=production
-RUN [ "$RAILS_ENV" = "production" ] && bundle exec rails assets:precompile || true
-
-# Expose port 80 to the Docker host, so we can access it
-# from the outside.
-EXPOSE 80
+RUN (if [ "$RAILS_ENV" = "production" ] ; then SECRET_KEY_BASE=`bundle exec rails secret` bundle exec rails assets:precompile ; else true ; fi)
 
 # The main command to run when the container starts. Also
 # tell the Rails dev server to bind to all interfaces by
 # default.
 ENTRYPOINT ["docker_scripts/entrypoint.sh"]
-CMD ["rails", "server", "-p", "80", "-b", "0.0.0.0"]
+# Will bind to PORT environment variable, or 3000 by default
+CMD ["rails", "server", "-b", "0.0.0.0"]

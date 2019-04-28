@@ -24,10 +24,9 @@ gem 'turbolinks', '~> 5'
 # gem 'image_processing', '~> 1.2'
 gem 'devise', '~> 4.6'
 
-# Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
 group :development, :test do
+  # Reduces boot times through caching; required in config/boot.rb
+  gem 'bootsnap', '>= 1.1.0', require: false
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
