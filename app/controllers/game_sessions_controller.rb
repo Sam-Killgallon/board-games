@@ -2,7 +2,15 @@
 
 class GameSessionsController < ApplicationController
   before_action :require_user!
-  before_action :require_access!, except: [:create]
+  before_action :require_access!, except: %i[create index]
+
+  def index
+    @game_sessions = case params[:filter]
+                     when 'past' then current_user.past_game_sessions
+                     when 'upcoming' then current_user.upcoming_game_sessions
+                     else current_user.game_sessions
+                     end
+  end
 
   def create
     redirect_to GameSession.create!(users: [current_user])

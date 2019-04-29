@@ -11,7 +11,7 @@ class Admin::GamesTest < ApplicationSystemTestCase
   test 'creating a Game' do
     visit root_url
     click_on 'Admin panel'
-    click_on 'Games'
+    click_on 'Manage games'
     click_on 'Add new game'
 
     new_game_details = {

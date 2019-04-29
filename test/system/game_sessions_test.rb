@@ -9,18 +9,33 @@ class GameSessionsTest < ApplicationSystemTestCase
   end
 
   test 'user browses game sessions' do
-    past_game_sessions = create_list(:game_session, 3, :past, users: [@current_user])
-    upcoming_game_sessions = create_list(:game_session, 2, :upcoming, users: [@current_user])
-    unscheduled_game_sessions = create_list(:game_session, 2, :unscheduled, users: [@current_user])
+    past_game_sessions = create_list(:game_session, 13, :past, users: [@current_user])
+    upcoming_game_sessions = create_list(:game_session, 7, :upcoming, users: [@current_user])
+    unscheduled_game_sessions = create_list(:game_session, 6, :unscheduled, users: [@current_user])
 
     visit root_url
     within '#past-game-sessions' do
-      past_game_sessions.each { |game| assert_text game.id }
+      # Show last 10 sessions
+      past_game_sessions.last(10).each { |game_session| assert_text game_session.id }
+      click_on 'View all past game sessions'
     end
+    past_game_sessions.each { |game_session| assert_text game_session.id }
 
+    visit root_url
     within '#upcoming-game-sessions' do
-      upcoming_game_sessions.each { |game| assert_text game.id }
-      unscheduled_game_sessions.each { |game| assert_text game.id }
+      # Prioritise showing upcoming sessions
+      upcoming_game_sessions.each { |game_session| assert_text game_session.id }
+      # Fill in remaining space with unscheduled (up to a total of 10)
+      unscheduled_game_sessions.first(3).each { |game_session| assert_text game_session.id }
+      click_on 'View all upcoming game sessions'
+    end
+    upcoming_game_sessions.each { |game_session| assert_text game_session.id }
+    unscheduled_game_sessions.each { |game_session| assert_text game_session.id }
+
+    click_on 'All'
+
+    (past_game_sessions + upcoming_game_sessions + unscheduled_game_sessions).each do |game_session|
+      assert_text game_session.id
     end
   end
 
@@ -73,7 +88,7 @@ class GameSessionsTest < ApplicationSystemTestCase
 
     target_date = 1.week.from_now
     find('input#game_session_scheduled_at').click
-    find("[aria-label=\"#{target_date.strftime('%B %d, %Y')}\"]", visible: false).click
+    find("[aria-label=\"#{target_date.strftime('%B %e, %Y').squish}\"]", visible: false).click
     click_on 'Schedule'
     assert_text 'Scheduled at: In 7 days'
   end

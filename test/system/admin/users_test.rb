@@ -11,7 +11,7 @@ class Admin::UsersTest < ApplicationSystemTestCase
   test 'viewing users' do
     visit root_url
     click_on 'Admin panel'
-    click_on 'Users'
+    click_on 'Manage users'
 
     @users.each do |user|
       assert_text user.id

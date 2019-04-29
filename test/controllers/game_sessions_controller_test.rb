@@ -13,8 +13,14 @@ class GameSessionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   not_found_without_user('get /game_session/:id') { get "/game_sessions/#{@game_session.id}" }
+  not_found_without_user('get /game_sessions') { get '/game_sessions' }
   not_found_without_user('post /game_sessions') { post '/game_sessions' }
   not_found_without_user('put /game_sessions') { put '/game_sessions' }
+
+  test 'lists all sessions' do
+    get '/game_sessions'
+    assert_response :success
+  end
 
   test 'creates a new session' do
     post '/game_sessions'
