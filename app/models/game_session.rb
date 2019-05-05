@@ -25,8 +25,8 @@ class GameSession < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations
 
-  scope :past, -> { where('scheduled_at <= ?', Time.current) }
-  scope :upcoming, -> { where('scheduled_at >= ?', Time.current) }
+  scope :past,        -> { where('scheduled_at <= ?', Time.current) }
+  scope :upcoming,    -> { where('scheduled_at >= ?', Time.current) }
   scope :unscheduled, -> { where(scheduled_at: nil) }
 
   def available_games

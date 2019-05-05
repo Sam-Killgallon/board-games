@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: game_sessions
@@ -20,7 +18,18 @@
 #  fk_rails_...  (game_id => games.id)
 #
 
-require 'test_helper'
+FactoryBot.define do
+  factory :game_session do
+    trait :unscheduled do
+      scheduled_at { nil }
+    end
 
-class GameSessionTest < ActiveSupport::TestCase
+    trait :past do
+      scheduled_at { 15.days.ago }
+    end
+
+    trait :upcoming do
+      scheduled_at { 5.days.from_now }
+    end
+  end
 end
