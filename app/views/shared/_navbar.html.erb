@@ -1,15 +1,17 @@
-<div id="navbar">
-  <%= link_to 'Home', root_path %>
+<div id="navbar" class="pure-menu pure-menu-horizontal">
+  <%= nav_link_to 'Home', root_path %>
+
   <% if user_signed_in? %>
     <% if current_user.admin? %>
-      <%= link_to 'Admin panel', admin_root_path %>
+      <%= nav_link_to 'Admin panel', admin_root_path %>
     <% end %>
-    <%= link_to 'Games', games_path %>
-    <%= link_to 'Game sessions', game_sessions_path %>
-    <%= link_to current_user.email, edit_user_registration_path %>
-    <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+    <%= nav_link_to 'Games', games_path %>
+    <%= nav_link_to 'Game sessions', game_sessions_path %>
+    <%= nav_link_to current_user.email, edit_user_registration_path %>
+    <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
   <% else %>
-    <%= link_to 'Sign up', new_user_registration_path %>
-    <%= link_to 'Sign in', new_user_session_path %>
+    <%= nav_link_to 'Sign up', new_user_registration_path %>
+    <%= nav_link_to 'Sign in', new_user_session_path %>
   <% end %>
 </div>
