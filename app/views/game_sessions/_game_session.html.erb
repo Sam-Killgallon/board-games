@@ -1,0 +1,5 @@
+<li>
+  <%= scheduled_time_in_words(game_session.scheduled_at) %>
+  -
+  <%= link_to game_session.id, game_session_path(game_session) %>
+</li>

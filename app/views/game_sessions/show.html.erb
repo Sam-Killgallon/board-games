@@ -5,7 +5,7 @@
 <% end %>
 
 <% if @game_session.scheduled_at %>
-  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at, context: :flexible) %></h5>
+  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at) %></h5>
 <% end %>
 
 <%= form_with model: @game_session, method: :patch, local: true do |form| %>

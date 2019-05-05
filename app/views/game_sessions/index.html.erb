@@ -4,10 +4,6 @@
 <%= link_to 'Upcoming', upcoming_game_sessions_path %>
 <%= link_to 'All', game_sessions_path %>
 
-<% @game_sessions.each do |game_session| %>
-  <li>
-    <%= scheduled_time_in_words(game_session.scheduled_at, context: :past) %>
-    -
-    <%= link_to game_session.id, game_session_path(game_session) %>
-  </li>
-<% end %>
+<ul>
+  <%= render @game_sessions %>
+</ul>

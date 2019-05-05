@@ -2,28 +2,18 @@
 <div>
   Welcome!
   <% if user_signed_in? %>
+
     <%= link_to 'Create session', game_sessions_path, method: :post %>
+
     <div id="past-game-sessions">
       <h3>Past game sessions</h3>
-      <% @past_game_sessions.each do |game_session| %>
-        <li>
-          <%= scheduled_time_in_words(game_session.scheduled_at, context: :past) %>
-          -
-          <%= link_to game_session.id, game_session_path(game_session) %>
-        </li>
-      <% end %>
+      <%= render @past_game_sessions %>
       <%= link_to 'View all past game sessions', past_game_sessions_path %>
     </div>
 
     <div id="upcoming-game-sessions">
       <h3>Upcoming game sessions</h3>
-      <% @upcoming_game_sessions.each do |game_session| %>
-        <li>
-          <%= scheduled_time_in_words(game_session.scheduled_at, context: :future) %>
-          -
-          <%= link_to game_session.id, game_session_path(game_session) %>
-        </li>
-      <% end %>
+      <%= render @upcoming_game_sessions %>
       <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
     </div>
   <% end %>
