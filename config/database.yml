@@ -3,7 +3,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 5) %>
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS', 15) %>
   host: <%= ENV.fetch('BOARD_GAMES_DATABASE_HOST', 'postgres') %>
   username: <%= ENV.fetch('BOARD_GAMES_DATABASE_USERNAME', 'postgres') %>
   password: <%= ENV.fetch('BOARD_GAMES_DATABASE_PASSWORD', nil) %>

@@ -22,4 +22,12 @@ FactoryBot.define do
     min_players { 1 }
     max_players { 1 }
   end
+
+  trait :with_box_image do
+    after(:create) do |game|
+      File.open(Rails.root.join('spec', 'fixtures', 'image.jpg'), 'r') do |file|
+        game.box_image.attach(io: file, filename: 'image.jpg', content_type: 'image/jpg')
+      end
+    end
+  end
 end

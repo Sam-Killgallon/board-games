@@ -24,6 +24,7 @@ class Admin::GamesController < Admin::ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
+      GenerateTextBoxImagePreview.call(@game) unless @game.box_image.attached?
       redirect_to [:admin, @game], notice: 'Game was successfully created.'
     else
       render :new
@@ -54,6 +55,6 @@ class Admin::GamesController < Admin::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def game_params
-    params.require(:game).permit(:title, :min_players, :max_players)
+    params.require(:game).permit(:title, :min_players, :max_players, :box_image)
   end
 end

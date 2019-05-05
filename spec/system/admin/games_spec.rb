@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe 'Admin::Games' do
   before do
-    create(:game)
+    create(:game, :with_box_image)
     login_as create(:user, :admin)
   end
 

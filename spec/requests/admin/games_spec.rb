@@ -27,7 +27,7 @@ RSpec.describe 'Admin::Games' do
 
   describe 'GET /admin/games/:id' do
     subject { get admin_game_url(game) }
-    let(:game) { create(:game) }
+    let(:game) { create(:game, :with_box_image) }
 
     context 'when not signed in' do
       it_behaves_like 'not found'
@@ -123,6 +123,41 @@ RSpec.describe 'Admin::Games' do
         subject
         new_game = Game.order(created_at: :desc).last
         expect(new_game).to have_attributes(title: title, min_players: min_players, max_players: max_players)
+      end
+
+      context 'with invalid attributes' do
+        let(:game_params) { { title: 'foo' } }
+
+        it 'renders the edit page' do
+          subject
+          expect(response).to have_http_status(200)
+        end
+      end
+
+      context 'with an uploaded image' do
+        let(:game_params) do
+          {
+            title: title,
+            min_players: min_players,
+            max_players: max_players,
+            box_image: fixture_file_upload('spec/fixtures/image.jpg')
+          }
+        end
+
+        it 'uploads the box image' do
+          subject
+          new_game = Game.order(created_at: :desc).last
+          expect(new_game.box_image).to be_attached
+          expect(new_game.box_image.checksum).to eql('qi15ImxQ/Tg0MbUMlmQIgw==')
+        end
+      end
+
+      context 'without a box image uploaded' do
+        it 'generates a placeholder' do
+          subject
+          new_game = Game.order(created_at: :desc).last
+          expect(new_game.box_image).to be_attached
+        end
       end
     end
   end
