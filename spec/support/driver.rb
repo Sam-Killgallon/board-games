@@ -1,6 +1,16 @@
 # frozen_string_literal: true
 
-require 'test_helper'
+Selenium::WebDriver::Chrome.path = '/usr/bin/chromium'
+
+RSpec.configure do |config|
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
+  end
+end
 
 # HACK: Add arguments required to run chrome tests in docker
 module ChromeOptionsExt
@@ -18,10 +28,4 @@ module ActionDispatch
       prepend ChromeOptionsExt
     end
   end
-end
-
-class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
-
-  include Warden::Test::Helpers
 end

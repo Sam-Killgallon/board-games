@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'application_system_test_case'
+require 'rails_helper'
 
-class Admin::GamesTest < ApplicationSystemTestCase
-  setup do
-    login_as(create(:user, :admin))
-    @game = create(:game)
+RSpec.describe 'Admin::Games' do
+  before do
+    create(:game)
+    login_as create(:user, :admin)
   end
 
-  test 'creating a Game' do
+  it 'creates a Game' do
     visit root_url
     click_on 'Admin panel'
     click_on 'Manage games'
@@ -25,31 +25,34 @@ class Admin::GamesTest < ApplicationSystemTestCase
     fill_in 'Max players', with: new_game_details[:max_players]
     click_on 'Create Game'
 
-    assert_text 'Game was successfully created'
-    assert_text new_game_details[:title]
+    expect(page).to have_content('Game was successfully created')
+    expect(page).to have_content(new_game_details[:title])
   end
 
-  test 'updating a Game' do
+  it 'updates a Game' do
     new_title = 'FooBar Game'
-    assert_not_equal new_title, @game.title
 
-    visit admin_games_url
+    visit root_url
+    click_on 'Admin panel'
+    click_on 'Manage games'
     click_on 'Edit', match: :first
 
     fill_in 'Title', with: new_title
     click_on 'Update Game'
 
-    assert_text 'Game was successfully updated'
-    assert_text new_title
+    expect(page).to have_content('Game was successfully updated')
+    expect(page).to have_content(new_title)
     click_on 'Back'
   end
 
-  test 'destroying a Game' do
-    visit admin_games_url
+  it 'destroys a Game', js: true do
+    visit root_url
+    click_on 'Admin panel'
+    click_on 'Manage games'
     page.accept_confirm do
       click_on 'Destroy', match: :first
     end
 
-    assert_text 'Game was successfully destroyed'
+    expect(page).to have_content('Game was successfully destroyed')
   end
 end
