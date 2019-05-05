@@ -13,6 +13,8 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - && \
       postgresql-client \
       # For building native extensions
       build-essential \
+      # For generating placeholder images
+      imagemagick \
       # For chromedriver, which gets installed by the 'chromedriver-helper' gem
       libnss3 \
       # For browser tests

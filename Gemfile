@@ -20,9 +20,8 @@ gem 'turbolinks', '~> 5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 
-# Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
 gem 'devise', '~> 4.6'
+gem 'mini_magick', '~> 4.9.3'
 
 group :development, :test do
   # Reduces boot times through caching; required in config/boot.rb
