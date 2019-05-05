@@ -7,14 +7,14 @@ class TextImageGenerator
   end
 
   def render(string, output_path)
-    MiniMagick::Tool::Convert.new do |i|
-      i.size       '450x300'
-      i.background 'white'
-      i.font       'fonts/Carter_One/CarterOne.ttf'
-      i.gravity    'Center'
-      i << "caption:#{string}"
+    MiniMagick::Tool::Convert.new do |image|
+      image.size       '450x300'
+      image.background 'white'
+      image.font       'fonts/Carter_One/CarterOne.ttf'
+      image.gravity    'Center'
+      image << "caption:#{string}"
 
-      i << output_path
+      image << output_path
     end
   end
 end

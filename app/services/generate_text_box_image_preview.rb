@@ -6,6 +6,8 @@ class GenerateTextBoxImagePreview
   end
 
   def call(game)
+    return if game.box_image.attached?
+
     generator = TextImageGenerator.new(width: width, height: height)
 
     Tempfile.create(['box_image_preview', '.jpg']) do |tempfile|
