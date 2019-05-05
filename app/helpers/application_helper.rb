@@ -1,9 +1,19 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  def notification_class(key)
+    case key
+    when 'notice'  then 'is-primary'
+    when 'alert'   then 'is-warning'
+    when 'success' then 'is-success'
+    when 'error'   then 'is-danger'
+    end
+  end
+
   def nav_link_to(name, path, html_options = {})
     classes = html_options.fetch(:class, [])
-    classes << 'active' if current_page?(path)
+    classes += ['navbar-item']
+    classes << 'is-active' if current_page?(path)
     html_options[:class] = classes
 
     link_to(name, path, html_options)

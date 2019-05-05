@@ -3,19 +3,11 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import 'channels';
-import * as RailsUJS from '@rails/ujs';
-import * as RailsActiveStorage from '@rails/activestorage';
-import * as Turbolinks from 'turbolinks';
-import flatpickr from 'flatpickr';
-import 'flatpickr/dist/flatpickr.css';
+// Setup libraries
+import 'setup/rails';
+import 'setup/flatpickr'
 
-RailsUJS.start()
-RailsActiveStorage.start()
-Turbolinks.start();
+// Import CSS
+import 'stylesheets/application.sass';
 
-document.addEventListener('turbolinks:load', () => {
-  flatpickr('[data-flatpickr="true"]', {
-    enableTime: true
-  })
-})
+import 'notifications';
