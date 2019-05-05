@@ -20,3 +20,7 @@ Metrics/BlockLength:
   Exclude:
     - test/**/*
     - spec/**/*
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'spec/**/*'
