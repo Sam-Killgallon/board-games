@@ -10,11 +10,13 @@ class HomeController < ApplicationController
 
   def past_game_sessions
     return [] unless user_signed_in?
+
     current_user.past_game_sessions.limit(10).order(scheduled_at: :desc)
   end
 
   def upcoming_game_sessions
     return [] unless user_signed_in?
+
     current_user.upcoming_game_sessions.limit(10).order(scheduled_at: :asc)
   end
 end

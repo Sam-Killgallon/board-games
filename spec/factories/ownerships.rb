@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: ownerships
@@ -22,6 +24,5 @@
 
 FactoryBot.define do
   factory :ownership do
-    
   end
 end

@@ -23,7 +23,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class Invitation < ApplicationRecord
   enum rsvp: %i[not_responded attending declined]
   belongs_to :user

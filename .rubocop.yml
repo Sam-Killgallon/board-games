@@ -19,3 +19,4 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - test/**/*
+    - spec/**/*

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -29,7 +31,7 @@ RSpec.describe User do
   it { is_expected.to validate_presence_of(:role) }
 
   describe '#role' do
-     it 'sets correct default role' do
+    it 'sets correct default role' do
       expect(instance).to be_user
       expect(instance).not_to be_admin
     end

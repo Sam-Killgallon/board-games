@@ -22,7 +22,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class Ownership < ApplicationRecord
   belongs_to :user
   belongs_to :game
