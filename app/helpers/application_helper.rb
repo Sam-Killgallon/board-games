@@ -4,7 +4,7 @@ module ApplicationHelper
   def notification_class(key)
     case key
     when 'notice'  then 'is-primary'
-    when 'alert'   then 'is-warning'
+    when 'alert'   then 'is-danger'
     when 'success' then 'is-success'
     when 'error'   then 'is-danger'
     end

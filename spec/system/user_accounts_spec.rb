@@ -16,10 +16,12 @@ RSpec.describe 'UserAccounts' do
   it 'allow signing in and logging out' do
     user = create(:user)
     visit root_url
-    click_on 'Sign in'
-    fill_in 'Email', with: user.email
-    fill_in 'Password', with: user.password
     click_on 'Log in'
+    within 'form' do
+      fill_in 'Email', with: user.email
+      fill_in 'Password', with: user.password
+      click_on 'Log in'
+    end
     expect(page).to have_content('Signed in successfully')
 
     click_on 'Sign out'
@@ -43,9 +45,11 @@ RSpec.describe 'UserAccounts' do
 
     # Check that we can sign in using the new details
     visit new_user_session_url
-    fill_in 'Email', with: new_email
-    fill_in 'Password', with: user.password
-    click_on 'Log in'
+    within 'form' do
+      fill_in 'Email', with: new_email
+      fill_in 'Password', with: user.password
+      click_on 'Log in'
+    end
     expect(page).to have_content('Signed in successfully')
   end
 end
