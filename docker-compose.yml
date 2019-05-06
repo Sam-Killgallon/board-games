@@ -12,6 +12,8 @@ services:
     image: samkillgallon/board-games
     environment:
       WEBPACKER_DEV_SERVER_HOST: webpack_dev_server
+      DATABASE_HOST: postgres
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
     ports:
       - '3000:3000'
     volumes:

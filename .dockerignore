@@ -1,9 +1,28 @@
-Dockerfile
-.git*
-log/*
-tmp/*
-public/packs*
-node_modules
-storage
-test
-config/credentials/*.key
+# Ignore bundler config.
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# Ignore uploaded files in development.
+/storage/*
+!/storage/.keep
+
+/public/assets
+/public/packs*
+/node_modules
+yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+.byebug_history
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/config/credentials/*.key
+
+/Dockerfile
+/.git*
+/spec
