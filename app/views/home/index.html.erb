@@ -1,20 +1,48 @@
-<h1>Board Games</h1>
-<div>
-  Welcome!
+<section class="section">
+  <header>
+    <h1 class="title">Board Games</h1>
+    <h2 class="subtitle">Welcome!</h2>
+  </header>
+
   <% if user_signed_in? %>
+    <div class="section">
 
-    <%= link_to 'Create session', game_sessions_path, method: :post %>
+      <div class="section">
+        <%= button_to 'Create new session', game_sessions_path, method: :post, class: %w[button is-primary] %>
+      </div>
 
-    <div id="past-game-sessions">
-      <h3>Past game sessions</h3>
-      <%= render @past_game_sessions %>
-      <%= link_to 'View all past game sessions', past_game_sessions_path %>
-    </div>
+      <div class="columns">
+        <nav class="panel column">
+          <div class="panel-heading">
+            <p>Past game sessions</p>
+          </div>
 
-    <div id="upcoming-game-sessions">
-      <h3>Upcoming game sessions</h3>
-      <%= render @upcoming_game_sessions %>
-      <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
+          <div id="past-game-sessions">
+            <%= render @past_game_sessions %>
+            <div class="panel-block level">
+              <div class="level-item">
+                <%= link_to 'View all past game sessions', past_game_sessions_path, class: %w[button is-link is-outlined] %>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <nav class="panel column">
+          <div class="panel-heading">
+            <p>Upcoming game sessions</p>
+          </div>
+
+          <div id="upcoming-game-sessions">
+            <%= render @upcoming_game_sessions %>
+
+            <div class="panel-block level">
+              <div class="level-item">
+                <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path, class: %w[button is-link is-outlined] %>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
     </div>
   <% end %>
-</div>
+</section>
