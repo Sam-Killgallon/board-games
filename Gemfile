@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 # gem 'redis', '~> 4.0'
 
 gem 'devise', '~> 4.6'
+gem 'google-cloud-storage', '~> 1.18', require: false
 gem 'mini_magick', '~> 4.9.3'
 
 group :development, :test do
