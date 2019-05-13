@@ -8,6 +8,6 @@ import 'setup/rails';
 import 'setup/flatpickr'
 
 // Import CSS
-import 'stylesheets/application.sass';
+import 'stylesheets/application.scss';
 
 import 'notifications';

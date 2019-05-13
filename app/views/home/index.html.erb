@@ -5,8 +5,9 @@
       <div class="banner-subtitle">A concise collection of your games and friends</div>
     </div>
   </div>
-  
+
   <% if user_signed_in? %>
+
     <div class="p">
       <div class="text-center">
         <div class="btn btn--ghost btn--grey mb-large">
@@ -19,12 +20,13 @@
           <div class="card__header">
             <div>Upcoming game sessions</div>
           </div>
+
           <div class="card__body">
             <%= render @upcoming_game_sessions %>
 
-            <div class="panel-block level">
-            <div class="level-item">
-              <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path, class: %w[button is-link is-outlined] %>
+            <div>
+            <div>
+              <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
             </div>
             </div>
           </div>
@@ -34,17 +36,18 @@
           <div class="card__header">
             <div>Past game sessions</div>
           </div>
+
           <div class="card__body">
-          <%= render @past_game_sessions %>
-          <div class="panel-block level">
-            <div class="level-item">
-              <%= link_to 'View all past game sessions', past_game_sessions_path, class: %w[button is-link is-outlined] %>
+            <%= render @past_game_sessions %>
+            <div>
+              <div>
+                <%= link_to 'View all past game sessions', past_game_sessions_path %>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>
-      
     </div>
+
   <% end %>
 </div>
