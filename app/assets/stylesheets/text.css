@@ -1,0 +1,115 @@
+/* Text Alignment */
+.text-right {
+  text-align: right !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+/* Text transforms */
+.text-uppercase {
+  text-transform: uppercase !important;
+}
+
+.text-lowercase {
+  text-transform: lowercase !important;
+}
+
+.text-capitalize {
+  text-transform: capitalize !important;
+}
+
+/* Text sizing */
+.text-tiny {
+  font-size: 72.5%;
+}
+
+.text-small {
+  font-size: 85%;
+}
+
+.text-large {
+  font-size: 115%;
+}
+
+.text-huge {
+  font-size: 130%;
+}
+
+.text-inherit {
+  font-size: inherit;
+}
+
+.text-bold {
+  font-weight: bold !important;
+}
+
+.text-normal {
+  font-weight: normal !important;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-strike {
+  text-decoration: line-through;
+}
+
+.text-underline {
+  text-decoration: underline;
+}
+
+.text-link {
+  display: inline;
+  border-bottom: 1px dotted;
+  cursor: pointer;
+  transition: .2s ease-out;
+}
+
+.text-link:hover {
+  border-bottom-style: solid;
+}
+
+.text-link-hover {
+  cursor: pointer;
+  transition: .2s ease-out;
+}
+.text-link-hover:hover {
+  border-bottom: 1px dotted;
+}
+
+/* Text wraps */
+.text-nowrap,
+.nowrap {
+  white-space: nowrap;
+}
+ 
+.text-white-space {
+  white-space: normal;
+}
+
+.text-breakall {
+  word-break: break-all;
+}
+
+.text-breakout,
+.text-hyphens {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Ellipsis text */
+.text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+}

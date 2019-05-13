@@ -1,28 +1,51 @@
-<h1>Board Games</h1>
-<div>
-  Welcome!
-  <% if user_signed_in? %>
-    <%= link_to 'Create session', game_sessions_path, method: :post %>
-    <div id="past-game-sessions">
-      <h3>Past game sessions</h3>
-      <% current_user.past_game_sessions.each do |game_session| %>
-        <li>
-          <%= scheduled_time_in_words(game_session.scheduled_at, context: :past) %>
-          -
-          <%= link_to game_session.id, game_session_path(game_session) %>
-        </li>
-      <% end %>
+<div class="container">
+  <div class="banner flex">
+    <div class="m-auto">
+      <div class="banner-title">Pendium</div>
+      <div class="banner-subtitle">A concise collection of your games and friends</div>
+    </div>
+  </div>
+  
+  <div class="p">
+    <div class="text-center">
+      <div class="btn btn--ghost btn--grey mb-large">
+        <% if user_signed_in? %>
+        <%= link_to 'Create session', game_sessions_path, method: :post %>
+      </div>
     </div>
 
-    <div id="upcoming-game-sessions">
-      <h3>Upcoming game sessions</h3>
-      <% current_user.upcoming_game_sessions.each do |game_session| %>
-        <li>
-          <%= scheduled_time_in_words(game_session.scheduled_at, context: :future) %>
-          -
-          <%= link_to game_session.id, game_session_path(game_session) %>
-        </li>
-      <% end %>
+    <div class="grid grid--2">
+      <div class="card h-300 flex-grow" id="upcoming-game-sessions">
+        <div class="card__header">
+          <div>Upcoming game sessions</div>
+        </div>
+        <div class="card__body">
+          <% current_user.upcoming_game_sessions.each do |game_session| %>
+            <li>
+              <%= scheduled_time_in_words(game_session.scheduled_at, context: :future) %>
+              -
+              <%= link_to game_session.id, game_session_path(game_session) %>
+            </li>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="card h-300 flex-grow" id="past-game-sessions">
+        <div class="card__header">
+          <div>Past game sessions</div>
+        </div>
+        <div class="card__body">
+          <% current_user.past_game_sessions.each do |game_session| %>
+            <li>
+              <%= scheduled_time_in_words(game_session.scheduled_at, context: :past) %>
+              -
+              <%= link_to game_session.id, game_session_path(game_session) %>
+            </li>
+          <% end %>
+        </div>
+      </div>
     </div>
-  <% end %>
+      
+    <% end %>
+  </div>
 </div>

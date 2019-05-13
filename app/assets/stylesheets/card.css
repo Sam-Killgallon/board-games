@@ -1,0 +1,45 @@
+.card {
+  background: white;
+}
+
+.card-floating {
+  z-index: 1;
+  width: 50%;
+  margin-top: -4rem;
+}
+
+@media screen and (max-width: 782px) {
+  .grid--2 .card-floating {
+    width: 100%;
+    margin-top: unset;
+  }
+}
+
+.card__header {
+  padding: var(--spacing);
+  border-bottom: 1px solid var(--color-grey-lighter);
+  margin: 0;
+  font-weight: 600;
+}
+
+.card__body {
+  padding: var(--spacing);
+}
+
+.square {
+  background-color: rgba(252,222,0, 0.5);
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: var(--spacing);
+}
+
+.card__icon i {
+  font-size: calc( var(--spacing) * 5 );
+  padding: 0 var(--spacing);
+}
+
+.card__title, .card__title a {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
