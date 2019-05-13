@@ -2,18 +2,23 @@
 
 class GameSessionsController < ApplicationController
   before_action :require_user!
-  before_action :require_access!, except: [:create]
+  before_action :require_access!, except: %i[create index]
+
+  def index
+    @game_sessions = case params[:filter]
+                     when 'past' then current_user.past_game_sessions
+                     when 'upcoming' then current_user.upcoming_game_sessions
+                     else current_user.game_sessions
+                     end
+  end
 
   def create
     redirect_to GameSession.create!(users: [current_user])
   end
 
   def show
-    @game_session = GameSession.includes(:users, :user_game_sessions).find(params[:id])
-    @current_user_game_session = @game_session.user_game_sessions.find_by(user: current_user)
-    @grouped_users = @game_session.users.group_by do |user|
-      @game_session.user_game_sessions.find_by(user: user).rsvp
-    end
+    @game_session = GameSession.includes(:users, :invitations).find(params[:id])
+    @current_user_invitation = @game_session.invitations.find_by(user: current_user)
   end
 
   def update

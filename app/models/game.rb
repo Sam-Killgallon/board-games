@@ -17,6 +17,8 @@
 #
 
 class Game < ApplicationRecord
+  BOX_IMAGE_DIMENSIONS = { width: 450, height: 300 }.freeze
+
   validates :title, presence: true
   validates :min_players, presence: true
   validates :max_players, presence: true
@@ -26,7 +28,10 @@ class Game < ApplicationRecord
   }
 
   # This destroys the join record, not the actual user
-  has_many :user_games, dependent: :destroy
-  has_many :users, through: :user_games
+  has_many :ownerships, dependent: :destroy
+  has_many :users, through: :ownerships
   has_many :game_sessions, dependent: :restrict_with_exception
+  has_one_attached :box_image
+
+  default_scope -> { order(:title) }
 end

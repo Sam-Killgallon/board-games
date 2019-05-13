@@ -1,0 +1,17 @@
+<table id="games">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @games.each do |game| %>
+      <tr>
+        <td><%= game.title %></td>
+        <td><%= button_to 'Add game', game, method: :patch, data: { 'disable-with': 'Added game!'} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

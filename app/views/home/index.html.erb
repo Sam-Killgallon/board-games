@@ -6,46 +6,45 @@
     </div>
   </div>
   
-  <div class="p">
-    <div class="text-center">
-      <div class="btn btn--ghost btn--grey mb-large">
-        <% if user_signed_in? %>
-        <%= link_to 'Create session', game_sessions_path, method: :post %>
-      </div>
-    </div>
-
-    <div class="grid grid--2">
-      <div class="card h-300 flex-grow" id="upcoming-game-sessions">
-        <div class="card__header">
-          <div>Upcoming game sessions</div>
-        </div>
-        <div class="card__body">
-          <% current_user.upcoming_game_sessions.each do |game_session| %>
-            <li>
-              <%= scheduled_time_in_words(game_session.scheduled_at, context: :future) %>
-              -
-              <%= link_to game_session.id, game_session_path(game_session) %>
-            </li>
-          <% end %>
+  <% if user_signed_in? %>
+    <div class="p">
+      <div class="text-center">
+        <div class="btn btn--ghost btn--grey mb-large">
+          <%= link_to 'Create New Session', game_sessions_path, method: :post %>
         </div>
       </div>
 
-      <div class="card h-300 flex-grow" id="past-game-sessions">
-        <div class="card__header">
-          <div>Past game sessions</div>
+      <div class="grid grid--2">
+        <div class="card h-300 flex-grow" id="upcoming-game-sessions">
+          <div class="card__header">
+            <div>Upcoming game sessions</div>
+          </div>
+          <div class="card__body">
+            <%= render @upcoming_game_sessions %>
+
+            <div class="panel-block level">
+            <div class="level-item">
+              <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path, class: %w[button is-link is-outlined] %>
+            </div>
+            </div>
+          </div>
         </div>
-        <div class="card__body">
-          <% current_user.past_game_sessions.each do |game_session| %>
-            <li>
-              <%= scheduled_time_in_words(game_session.scheduled_at, context: :past) %>
-              -
-              <%= link_to game_session.id, game_session_path(game_session) %>
-            </li>
-          <% end %>
+
+        <div class="card h-300 flex-grow" id="past-game-sessions">
+          <div class="card__header">
+            <div>Past game sessions</div>
+          </div>
+          <div class="card__body">
+          <%= render @past_game_sessions %>
+          <div class="panel-block level">
+            <div class="level-item">
+              <%= link_to 'View all past game sessions', past_game_sessions_path, class: %w[button is-link is-outlined] %>
+            </div>
+          </div>
+          </div>
         </div>
       </div>
-    </div>
       
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

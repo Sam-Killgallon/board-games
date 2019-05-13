@@ -6,17 +6,20 @@
     <%= csp_meta_tag %>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Language" content="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <%= render 'admin/shared/navbar' %>
-
-    <div class="notice"><%= notice %></div>
-    <div class="alert"><%= alert %></div>
   </head>
 
   <body>
-    <%= yield %>
+    <header class="container">
+      <%= render 'admin/shared/navbar' %>
+      <%= render 'shared/flash' %>
+    </header>
+
+    <main class="container">
+      <%= yield %>
+    </main>
   </body>
 </html>

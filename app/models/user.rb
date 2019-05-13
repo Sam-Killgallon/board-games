@@ -30,10 +30,10 @@ class User < ApplicationRecord
 
   validates :role, presence: true
   # This destroys the join record, not the actual game
-  has_many :user_games, dependent: :destroy
-  has_many :games, -> { readonly }, through: :user_games
-  has_many :user_game_sessions, dependent: :destroy
-  has_many :game_sessions, through: :user_game_sessions
+  has_many :ownerships, dependent: :destroy
+  has_many :games, -> { readonly }, through: :ownerships
+  has_many :invitations, dependent: :destroy
+  has_many :game_sessions, through: :invitations
 
   def past_game_sessions
     game_sessions.past

@@ -2,34 +2,44 @@
   <% if user_signed_in? %>
   <ul class="flex-grow">
     <li class="nav__item">
-      <%= link_to 'Home', root_path %>
+      <%= nav_link_to 'Home', root_path %>
     </li>
   </ul>
   <ul class="flex-grow">
     <li class="nav__item">
-      <%= link_to 'Admin panel', admin_root_path %>
+      <%= nav_link_to 'Admin panel', admin_root_path %>
+    </li>
+  </ul>
+  <ul class="flex-grow">
+  <li class="nav__item">
+  <%= nav_link_to 'Games', games_path %>
+  </li>
+</ul>
+<ul class="flex-grow">
+<li class="nav__item">
+<%= nav_link_to 'Game sessions', game_sessions_path %>
+</li>
+</ul>
+  <ul class="flex-grow">
+    <li class="nav__item">
+      <%= nav_link_to current_user.email, edit_user_registration_path %>
     </li>
   </ul>
   <ul class="flex-grow">
     <li class="nav__item">
-      <%= link_to current_user.email, edit_user_registration_path %>
-    </li>
-  </ul>
-  <ul class="flex-grow">
-    <li class="nav__item">
-      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
     </li>
   </ul>
 
   <% else %>
   <ul class="flex-grow">
     <li class="nav__item">
-      <%= link_to 'Sign up', new_user_registration_path %>
+      <%= nav_link_to 'Sign up', new_user_registration_path %>
     </li>
   </ul>
   <ul class="flex-grow">
     <li class="nav__item">
-      <%= link_to 'Sign in', new_user_session_path %>
+      <%= nav_link_to 'Log in', new_user_session_path %>
     </li>
   </ul>
 
