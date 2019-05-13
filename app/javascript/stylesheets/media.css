@@ -1,0 +1,17 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+}
+
+.media__figure {
+  float: left;
+  margin-right: var(--spacing);
+}
+
+.media__figure img {
+  display: block;
+}
+  
+.media__body {
+  flex: 1;
+}

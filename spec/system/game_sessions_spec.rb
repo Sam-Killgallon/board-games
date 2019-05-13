@@ -50,7 +50,7 @@ RSpec.describe 'GameSessions' do
     unowned_games = create_list(:game, 10)
 
     visit root_url
-    click_on 'Create new session'
+    click_on 'Create New Session'
 
     fill_in 'Player email', with: friend1.email
     click_on 'Add player'

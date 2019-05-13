@@ -12,7 +12,7 @@ RSpec.describe 'Admin::Games' do
     visit root_url
     click_on 'Admin panel'
     click_on 'Manage games'
-    click_on 'Add new game'
+    click_on 'Add New Game'
 
     new_game_details = {
       title: 'Betrayal at house on the hill',

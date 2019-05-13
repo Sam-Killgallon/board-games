@@ -1,0 +1,26 @@
+.bg-default,
+.bg-transparent         { background-color: transparent !important; }
+
+.bg-primary             { background-color: var(--color-primary) !important; }
+
+.bg-secondary           { background-color: var(--color-secondary) !important; }
+
+.bg-tertiary            { background-color: var(--color-tertiary) !important; }
+
+.bg-quaternary          { background-color: var(--color-quaternary) !important; }
+
+.bg-grey                { background-color: var(--color-grey) !important; }
+.bg-grey-light          { background-color: var(--color-grey-light) !important; }
+.bg-grey-lighter        { background-color: var(--color-grey-lighter) !important; }
+.bg-grey-lightest       { background-color: var(--color-grey-lightest) !important; }
+.bg-grey-dark           { background-color: var(--color-grey-dark) !important; }
+.bg-grey-darker         { background-color: var(--color-grey-darker) !important; }
+.bg-black               { background-color: #000 !important; }
+.bg-white               { background-color: white !important; }
+
+.bg-action              { background-color: var(--color-action) !important; }
+.bg-info                { background-color: var(--color-info) !important; }
+.bg-success             { background-color: var(--color-success) !important; }
+.bg-warning             { background-color: var(--color-warning) !important; }
+.bg-error,
+.bg-danger              { background-color: var(--color-danger) !important; }

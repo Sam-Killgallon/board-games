@@ -1,27 +1,33 @@
-<h1>Games</h1>
+<div class="container">
+  <div class="banner banner-small flex">
+    <div class="m-auto">
+      <div class="banner-title">Games</div>
+    <div class="btn btn--ghost btn--grey"><%= link_to 'Add New Game', new_game_path %></div>
+    </div>
+  </div>
 
-<%if @games.empty? %>
-  <p>You don't have any games! Add some using the button below</p>
-<% else %>
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th></th>
-      </tr>
-    </thead>
+  <div class="p text-center">
 
-    <tbody>
-      <% @games.each do |game| %>
-        <tr>
-          <td><%= game.title %></td>
-          <td><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-<% end %>
+    <%if @games.empty? %>
+      <p>You don't have any games! Why not add one?</p>
+    <% else %>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th></th>
+          </tr>
+        </thead>
 
-<br>
-
-<%= link_to 'Add game', new_game_path %>
+        <tbody>
+          <% @games.each do |game| %>
+            <tr>
+              <td><%= game.title %></td>
+              <td><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>

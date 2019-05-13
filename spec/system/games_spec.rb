@@ -20,8 +20,8 @@ RSpec.describe 'Games' do
     visit root_url
     click_on 'Games'
     # Message to prompt user to add games
-    expect(page).to have_content("You don't have any games! Add some using the button below")
-    click_on 'Add game'
+    expect(page).to have_content("You don't have any games! Why not add one?")
+    click_on 'Add New Game'
 
     find('input[type="search"]').set("game o\n")
     find('tr', text: 'Game of Thrones').click_on 'Add game'

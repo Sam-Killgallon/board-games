@@ -1,48 +1,50 @@
-<section class="section">
-  <header>
-    <h1 class="title">Board Games</h1>
-    <h2 class="subtitle">Welcome!</h2>
-  </header>
-
+<div class="container">
+  <div class="banner flex">
+    <div class="m-auto">
+      <div class="banner-title">Pendium</div>
+      <div class="banner-subtitle">A concise collection of your games and friends</div>
+    </div>
+  </div>
+  
   <% if user_signed_in? %>
-    <div class="section">
-
-      <div class="section">
-        <%= button_to 'Create new session', game_sessions_path, method: :post, class: %w[button is-primary] %>
+    <div class="p">
+      <div class="text-center">
+        <div class="btn btn--ghost btn--grey mb-large">
+          <%= link_to 'Create New Session', game_sessions_path, method: :post %>
+        </div>
       </div>
 
-      <div class="columns">
-        <nav class="panel column">
-          <div class="panel-heading">
-            <p>Past game sessions</p>
+      <div class="grid grid--2">
+        <div class="card h-300 flex-grow" id="upcoming-game-sessions">
+          <div class="card__header">
+            <div>Upcoming game sessions</div>
           </div>
-
-          <div id="past-game-sessions">
-            <%= render @past_game_sessions %>
-            <div class="panel-block level">
-              <div class="level-item">
-                <%= link_to 'View all past game sessions', past_game_sessions_path, class: %w[button is-link is-outlined] %>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <nav class="panel column">
-          <div class="panel-heading">
-            <p>Upcoming game sessions</p>
-          </div>
-
-          <div id="upcoming-game-sessions">
+          <div class="card__body">
             <%= render @upcoming_game_sessions %>
 
             <div class="panel-block level">
-              <div class="level-item">
-                <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path, class: %w[button is-link is-outlined] %>
-              </div>
+            <div class="level-item">
+              <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path, class: %w[button is-link is-outlined] %>
+            </div>
             </div>
           </div>
-        </nav>
+        </div>
+
+        <div class="card h-300 flex-grow" id="past-game-sessions">
+          <div class="card__header">
+            <div>Past game sessions</div>
+          </div>
+          <div class="card__body">
+          <%= render @past_game_sessions %>
+          <div class="panel-block level">
+            <div class="level-item">
+              <%= link_to 'View all past game sessions', past_game_sessions_path, class: %w[button is-link is-outlined] %>
+            </div>
+          </div>
+          </div>
+        </div>
       </div>
+      
     </div>
   <% end %>
-</section>
+</div>
