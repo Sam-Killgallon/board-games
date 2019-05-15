@@ -1,0 +1,43 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: $font-size-small;
+}
+
+.field {
+  input {
+    border: none;
+    border-bottom: 1px solid #474643;
+    margin-bottom: 1rem;
+    min-height: 2rem;
+    padding: 0 0.5rem;
+    width: 100%;
+  }
+}
+
+input[type="submit"] {
+  user-select: unset;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+}
+
+input[type="submit"]:focus {
+  outline-color: transparent;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance:none;
+  width:30px;
+  height:30px;
+  background:white;
+  border-radius:5px;
+  border:2px solid #555;
+}
+input[type='checkbox']:checked {
+  background: #abd;
+}
