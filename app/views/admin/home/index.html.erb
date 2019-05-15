@@ -2,35 +2,33 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 </head>
 
-<div class="container">
-  <div class="banner banner-dark flex">
-    <div class="m-auto">
-      <div class="banner-title">Pendium</div>
-      <div class="banner-subtitle">Welcome to the admin panel</div>
-    </div>
+<div class="banner banner-dark flex">
+  <div class="m-auto">
+    <div class="banner-title">Pendium</div>
+    <div class="banner-subtitle">Welcome to the admin panel</div>
   </div>
+</div>
 
-  <div class="p">
-    <div class="grid grid--2">
+<div class="p">
+  <div class="grid grid--2">
 
-      <div class="card h-200 ml-auto card-floating">
-        <div class="card__body flex flex--column text-center">
-          <div class="square">
-            <div class="card__icon"><i class="fas fa-dice"></i></div>
-          </div>
-          <div class="card__title"><%= link_to 'Manage games', admin_games_path %></div>
+    <div class="card h-200 ml-auto card-floating">
+      <div class="card__body flex flex--column text-center">
+        <div class="square">
+          <div class="card__icon"><i class="fas fa-dice"></i></div>
         </div>
+        <div class="card__title"><%= link_to 'Manage games', admin_games_path %></div>
       </div>
-
-      <div class="card h-200 mr-auto card-floating">
-        <div class="card__body flex flex--column text-center">
-          <div class="square">
-            <div class="card__icon"><i class="fas fa-users"></i></div>
-          </div>
-          <div class="card__title"><%= link_to 'Manage users', admin_users_path %></div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="card h-200 mr-auto card-floating">
+      <div class="card__body flex flex--column text-center">
+        <div class="square">
+          <div class="card__icon"><i class="fas fa-users"></i></div>
+        </div>
+        <div class="card__title"><%= link_to 'Manage users', admin_users_path %></div>
+      </div>
+    </div>
+
   </div>
 </div>
