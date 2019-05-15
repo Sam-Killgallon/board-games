@@ -1,57 +1,45 @@
-<div class="navbar nav flex flex--space-around" id="navbar">
-  <ul class="flex-grow">
+<div class="navbar nav" id="navbar">
+  <% if user_signed_in? %>
+  <ul class="navbar__left">
     <li class="nav__item">
       <%= nav_link_to 'Home', root_path %>
     </li>
-  </ul>
-
-  <% if user_signed_in? %>
 
     <% if current_user.admin? %>
-      <ul class="flex-grow">
-        <li class="nav__item">
-          <%= nav_link_to 'Admin panel', admin_root_path %>
-        </li>
-      </ul>
+      <li class="nav__item">
+        <%= nav_link_to 'Admin panel', admin_root_path %>
+      </li>
     <% end %>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
-        <%= nav_link_to 'Games', games_path %>
-      </li>
-    </ul>
+    <li class="nav__item">
+      <%= nav_link_to 'Games', games_path %>
+    </li>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
+    <li class="nav__item">
       <%= nav_link_to 'Game sessions', game_sessions_path %>
-      </li>
-    </ul>
+    </li>
+  </ul>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
-        <%= nav_link_to current_user.email, edit_user_registration_path %>
-      </li>
-    </ul>
-
-    <ul class="flex-grow">
-      <li class="nav__item">
-        <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
-      </li>
-    </ul>
+  <ul class="navbar__right">
+    <li class="nav__item">
+      <%= nav_link_to current_user.email, edit_user_registration_path %>
+    </li>
+    
+    <li class="nav__item">
+      <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
+    </li>
+  </ul>
 
   <% else %>
-
-    <ul class="flex-grow">
-      <li class="nav__item">
+  <ul class="navbar__right">
+    <li class="nav__item">
       <%= nav_link_to 'Sign up', new_user_registration_path %>
-      </li>
-    </ul>
+    </li>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
+    <li class="nav__item">
       <%= nav_link_to 'Log in', new_user_session_path %>
-      </li>
-    </ul>
+    </li>
+  </ul>
 
   <% end %>
 </div>

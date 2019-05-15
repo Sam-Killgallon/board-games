@@ -12,18 +12,6 @@
   white-space: nowrap;
 }
 
-input[type="submit" i] {
-  user-select: unset;
-  cursor: pointer;
-  color: inherit;
-  background-color: inherit;
-  border: none;
-}
-
-input[type="submit" i]:focus {
-  outline-color: transparent;
-}
-
 .btn--circle {
   display: inline-flex;
   align-items: center;
@@ -46,14 +34,6 @@ input[type="submit" i]:focus {
 .btn--secondary {
   background-color: $color-secondary;
 }
-
-// .btn--tertiary {
-//   background-color: $color-tertiary;
-// }
-
-// .btn--quaternary {
-//   background-color: $color-quaternary;
-// }
 
 .btn--grey {
   background-color: $color-grey;
@@ -123,16 +103,6 @@ input[type="submit" i]:focus {
   border-color: $color-secondary;
   color: $color-secondary;
 }
-
-// .btn--ghost.btn--tertiary {
-//   border-color: $color-tertiary;
-//   color: $color-tertiary;
-// }
-
-// .btn--ghost.btn--quaternary {
-//   border-color: $color-quaternary;
-//   color: $color-quaternary;
-// }
 
 .btn--ghost.btn--grey {
   border-color: $color-grey;

@@ -18,8 +18,9 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
-  margin-bottom: $spacing * 2 ;
   margin: 0;
+  margin-bottom: $spacing * 2;
+  margin-top: 45px;
   text-align: left;
 }
 
