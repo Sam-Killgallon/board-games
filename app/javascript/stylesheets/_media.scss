@@ -1,0 +1,16 @@
+.media {
+  display: flex;
+  align-items: flex-start;
+
+  &__figure {
+    float: left;
+    margin-right: $spacing;
+    img {
+      display: block;
+    }
+  }
+
+  &__body {
+    flex: 1;
+  }
+}

@@ -70,18 +70,17 @@
   border-bottom: 1px dotted;
   cursor: pointer;
   transition: .2s ease-out;
-}
-
-.text-link:hover {
-  border-bottom-style: solid;
+  &:hover {
+    border-bottom-style: solid;
+  }
 }
 
 .text-link-hover {
   cursor: pointer;
   transition: .2s ease-out;
-}
-.text-link-hover:hover {
-  border-bottom: 1px dotted;
+  &:hover {
+    border-bottom: 1px dotted;
+  }
 }
 
 /* Text wraps */

@@ -1,0 +1,196 @@
+.btn {
+  background-color: $color-action;
+  border: 2px solid transparent;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  line-height: normal;
+  padding: $btn-padding $btn-padding * 2.5;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+input[type="submit" i] {
+  user-select: unset;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+}
+
+input[type="submit" i]:focus {
+  outline-color: transparent;
+}
+
+.btn--circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.btn:hover {
+  opacity: 0.65;
+}
+
+.btn--primary {
+  background-color: $color-primary;
+}
+
+.btn--secondary {
+  background-color: $color-secondary;
+}
+
+// .btn--tertiary {
+//   background-color: $color-tertiary;
+// }
+
+// .btn--quaternary {
+//   background-color: $color-quaternary;
+// }
+
+.btn--grey {
+  background-color: $color-grey;
+}
+
+.btn--grey-light {
+  background-color: $color-grey-light;
+}
+
+.btn--grey-lighter {
+  background-color: $color-grey-lighter;
+}
+
+.btn--grey-lightest {
+  background-color: $color-grey-lightest;
+}
+
+.btn--grey-dark {
+  background-color: $color-grey-dark;
+}
+
+.btn--grey-darker {
+  background-color: $color-grey-darker;
+}
+
+.btn--black {
+  background-color: $color-black;
+}
+
+.btn--white {
+  background-color: $color-white;
+}
+
+.btn--action {
+  background-color: $color-action;
+}
+
+.btn--info {
+  background-color: $color-info;
+}
+
+.btn--success {
+  background-color: $color-success;
+}
+
+.btn--warning {
+  background-color: $color-warning;
+}
+
+.btn--danger {
+  background-color: $color-danger;
+}
+
+/* Ghost style buttons */
+.btn--ghost {
+  background-color: transparent;
+  border-color: $color-primary;
+  color: $color-primary;
+}
+
+.btn--ghost.btn--primary {
+  border-color: $color-primary;
+  color: $color-primary;
+}
+
+.btn--ghost.btn--secondary {
+  border-color: $color-secondary;
+  color: $color-secondary;
+}
+
+// .btn--ghost.btn--tertiary {
+//   border-color: $color-tertiary;
+//   color: $color-tertiary;
+// }
+
+// .btn--ghost.btn--quaternary {
+//   border-color: $color-quaternary;
+//   color: $color-quaternary;
+// }
+
+.btn--ghost.btn--grey {
+  border-color: $color-grey;
+  color: $color-grey;
+}
+
+.btn--ghost.btn--grey-light {
+  border-color: $color-grey-light;
+  color: $color-grey-light;
+}
+
+.btn--ghost.btn--grey-lighter {
+  border-color: $color-grey-lighter;
+  color: $color-grey-lighter;
+}
+
+.btn--ghost.btn--grey-lightest {
+  border-color: $color-grey-lightest;
+  color: $color-grey-lightest;
+}
+
+.btn--ghost.btn--grey-dark {
+  border-color: $color-grey-dark;
+  color: $color-grey-dark;
+}
+
+.btn--ghost.btn--grey-darker {
+  border-color: $color-grey-darker;
+  color: $color-grey-darker;
+}
+
+.btn--ghost.btn--black {
+  border-color: $color-black;
+  color: $color-black;
+}
+
+.btn--ghost.btn--action {
+  border-color: $color-action;
+  color: $color-action;
+}
+
+.btn--ghost.btn--info {
+  border-color: $color-info;
+  color: $color-info;
+}
+
+.btn--ghost.btn--success {
+  border-color: $color-success;
+  color: $color-success;
+}
+
+.btn--ghost.btn--warning {
+  border-color: $color-warning;
+  color: $color-warning;
+}
+
+.btn--ghost.btn--danger {
+  border-color: $color-danger;
+  color: $color-danger;
+}
+

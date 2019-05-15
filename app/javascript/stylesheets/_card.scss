@@ -1,0 +1,45 @@
+.card {
+  background: white;
+
+  &__header {
+    padding: $spacing;
+    border-bottom: 1px solid $color-grey-lighter;
+    margin: 0;
+    font-weight: 600;
+  }
+
+  &__title, &__title a {
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+
+  &__body {
+    padding: $spacing;
+  }
+
+  &__icon {
+    font-size: $spacing * 5 ;
+    padding: 0 $spacing;
+  }
+}
+
+.card-floating {
+  z-index: 1;
+  width: 50%;
+  margin-top: -4rem;
+}
+
+@media screen and (max-width: 782px) {
+  .grid--2 .card-floating {
+    width: 100%;
+    margin-top: unset;
+  }
+}
+
+.square {
+  background-color: rgba(252,222,0, 0.5);
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  margin-bottom: $spacing;
+}

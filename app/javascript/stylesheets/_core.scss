@@ -7,36 +7,35 @@
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background-color: var(--color-grey-lightest);
+  background-color: $color-grey-lightest;
   box-sizing: border-box;
   font-family: sans-serif;
   font-size: 100%;
 }
 
 body {
-  color: var(--color-text);
-  font-family: var(--base-font-family);
-  font-size: var(--base-font-size);
-  line-height: var(--base-line-height);
-  margin-bottom: calc( var(--spacing) * 2 );
+  color: $color-text;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
+  line-height: $base-line-height;
+  margin-bottom: $spacing * 2 ;
   margin: 0;
   text-align: left;
 }
 
 .container {
   flex: 1 0 0%;
-  margin: 48px 0;
   overflow-y: auto;
   overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  margin-bottom: var(--spacing);
+  margin-bottom: $spacing;
   margin-top: 0;
 }
 
 p {
-  margin-bottom: var(--spacing);
+  margin-bottom: $spacing;
   margin-top: 0;
 }
 
