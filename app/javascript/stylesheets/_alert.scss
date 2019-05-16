@@ -1,11 +1,8 @@
-@import "variables";
-
 .alert {
   position: relative;
-  /* padding: $spacing $spacing * 1.25;
-  margin-bottom: $spacing; */
+  padding: $spacing $spacing * 1.25;
+  margin-bottom: $spacing;
   border: $base-border-width solid;
-  border-radius: $base-border-radius;
 }
 
 .alert-dismissible {
@@ -20,59 +17,31 @@
   color: inherit;
 }
 
-.alert--epic {
-  background-color: $color-text;
-  border-color: $color-text;
-  color: #fff;
-}
-
-.alert--discreet {
-  border: 1px dashed;
-  box-shadow: none;
-}
-
 .alert__icon {
   font-size: 225%;
   line-height: 1;
 }
 
-
 .alert--info {
   border-color: $color-info;
   color: $color-info;
-}
-
-.alert--info .alert--epic {
-  color: #fff;
-  background-color: $color-info;
+  background-color: rgba($color-info, 0.2);
 }
 
 .alert--success {
   border-color: $color-success;
   color: $color-success;
-}
-
-.alert--success .alert--epic {
-  color: #fff;
-  background-color: $color-success;
+  background-color: rgba($color-success, 0.2);
 }
 
 .alert--warning {
   border-color: $color-warning;
   color: $color-warning;
-}
-
-.alert--warning .alert--epic {
-  color: #fff;
-  background-color: $color-warning;
+  background-color: rgba($color-warning, 0.2);
 }
 
 .alert--danger {
   border-color: $color-danger;
   color: $color-danger;
-}
-
-.alert--danger .alert--epic {
-  color: #fff;
-  background-color: $color-danger;
+  background-color: rgba($color-danger, 0.2);
 }

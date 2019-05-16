@@ -3,6 +3,12 @@
   grid-auto-rows: minmax(100px, auto);
   grid-gap: $spacing;
 
+  &--1 {
+    display: flex;
+    grid-template-columns: 1fr;
+    width: 60%;
+  }
+
   &--2 {
     grid-template-columns: 1fr 1fr;
   }
