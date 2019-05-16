@@ -1,0 +1,28 @@
+.notification {
+  border-radius: $base-border-radius;
+  bottom: $spacing;
+  box-shadow: $base-shadow;
+  color: #fff;
+  margin-top: $spacing-tiny;
+  max-width: 450px;
+  padding: $spacing $spacing * 1.5;
+  position: fixed;
+  right: $spacing;
+  text-align: right;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.35);
+  z-index: 9999;
+  &.alert {
+    background-color: $color-danger;
+    margin-bottom: unset;
+    border: unset;
+  }
+  &.notice {
+    background-color: $color-success;
+  }
+}
+
+.delete {
+  position: absolute;
+  top: $spacing-tiny;
+  right: $spacing-tiny;
+}
