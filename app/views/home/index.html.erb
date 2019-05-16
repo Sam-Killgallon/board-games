@@ -22,11 +22,8 @@
 
         <div class="card__body">
           <%= render @upcoming_game_sessions %>
-
-          <div>
           <div>
             <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
-          </div>
           </div>
         </div>
       </div>
@@ -39,9 +36,7 @@
         <div class="card__body">
           <%= render @past_game_sessions %>
           <div>
-            <div>
-              <%= link_to 'View all past game sessions', past_game_sessions_path %>
-            </div>
+            <%= link_to 'View all past game sessions', past_game_sessions_path %>
           </div>
         </div>
       </div>
