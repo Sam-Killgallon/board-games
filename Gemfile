@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'devise', '~> 4.6'
 gem 'google-cloud-storage', '~> 1.18', require: false
 gem 'mini_magick', '~> 4.9.3'
+gem 'sendgrid-ruby', '~> 5.3.0'
 
 group :development, :test do
   # Reduces boot times through caching; required in config/boot.rb
