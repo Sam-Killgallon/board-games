@@ -17,7 +17,7 @@ class GameSessionsController < ApplicationController
   end
 
   def show
-    @game_session = GameSession.includes(:users, :invitations).find(params[:id])
+    @game_session = GameSession.find(params[:id])
     @current_user_invitation = @game_session.invitations.find_by(user: current_user)
   end
 

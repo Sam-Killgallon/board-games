@@ -23,6 +23,7 @@ gem 'mini_magick', '~> 4.9.3'
 group :development, :test do
   # Reduces boot times through caching; required in config/boot.rb
   gem 'bootsnap', '>= 1.1.0', require: false
+  gem 'bullet', '~> 6.0.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '~> 11.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
@@ -34,7 +35,6 @@ group :development do
   gem 'annotate', '~> 2.7'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'rubocop', '~> 0.64'
   gem 'spring', '~> 2.0'
