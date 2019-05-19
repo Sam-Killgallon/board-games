@@ -19,7 +19,7 @@
 class Game < ApplicationRecord
   BOX_IMAGE_DIMENSIONS = { width: 450, height: 300 }.freeze
 
-  validates :title, presence: true
+  validates :title, presence: true, uniqueness: true
   validates :min_players, presence: true
   validates :max_players, presence: true
   validates :max_players, numericality: {

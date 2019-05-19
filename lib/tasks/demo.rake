@@ -1,14 +1,113 @@
 # frozen_string_literal: true
 
-namespace :demo do
+namespace :demo do # rubocop:disable Metrics/BlockLength
   desc 'Generate some data for the application'
-  task generate_data: :environment do
+  task generate_data: ['demo:generate_games', 'demo:generate_users', 'demo:generate_game_sessions']
+
+  desc 'Generate some demo games for the application'
+  task generate_games: :environment do
     puts 'This game data was generated randomly and does not reflect the attributes of the actual game'
-    demo_game_data.each do |game_data|
-      game = Game.create!(game_data)
-      GenerateTextBoxImagePreview.call(game)
+
+    total = demo_game_data.size
+    demo_game_data.each_with_index do |game_data, index|
+      print "Creating game #{index + 1} / #{total}\r"
+      game = Game.create(game_data)
+      GenerateTextBoxImagePreview.call(game) if game # Skip this for performance if the game already exists
     end
+    puts ''
   end
+
+  desc 'Generate some demo game sessions for the application'
+  task generate_game_sessions: :environment do
+    total = demo_game_session_data.size
+    demo_game_session_data.each_with_index do |game_session_data, index|
+      print "Creating game session #{index + 1} / #{total}\r"
+      users = User.order('RANDOM()').limit(rand(10))
+      GameSession.create(**game_session_data, users: users)
+    end
+    puts ''
+
+    total = Invitation.count
+    Invitation.all.each_with_index do |invitation, index|
+      print "Updating game session responses #{index + 1} / #{total}\r"
+      case rand(3)
+      when 0 then invitation.attending!
+      when 1 then invitation.declined!
+      when 2 then invitation.not_responded!
+      end
+    end
+    puts ''
+  end
+
+  desc 'Generate some demo users for the application'
+  task generate_users: :environment do
+    total = demo_user_data.size
+    demo_user_data.each_with_index do |user_data, index|
+      print "Creating user #{index + 1} / #{total}\r"
+      password = 'password'
+      # Workaround default_scope with 'unscoped'
+      games = Game.unscoped.order('RANDOM()').limit(rand(40))
+      User.create(**user_data, password: password, password_confirmation: password, games: games)
+    end
+    puts ''
+  end
+end
+
+def demo_user_data # rubocop:disable Metrics/MethodLength
+  [
+    { email: 'admin@test.com', role: :admin },
+    { email: 'admin-foo@test.com', role: :admin },
+    { email: 'admin-bar@test.com', role: :admin },
+    { email: 'foo@test.com' },
+    { email: 'bar@test.com' },
+    { email: 'baz@test.com' },
+    { email: 'foobar@test.com' },
+    { email: 'foobaz@test.com' },
+    { email: 'barfoo@test.com' },
+    { email: 'barbaz@test.com' },
+    { email: 'jim@test.com' },
+    { email: 'fred@test.com' },
+    { email: 'frank@test.com' },
+    { email: 'bob@test.com' },
+    { email: 'sam@test.com' },
+    { email: 'bill@test.com' },
+    { email: 'sally@test.com' },
+    { email: 'jean@test.com' },
+    { email: 'lucy@test.com' },
+    { email: 'carrie@test.com' },
+    { email: 'jenni@test.com' },
+    { email: 'holly@test.com' },
+    { email: 'argus-von-beardy-mcboatface@test.com' },
+    { email: 'henry@test.com' },
+    { email: 'megan@test.com' }
+  ]
+end
+
+def demo_game_session_data
+  [
+    { scheduled_at: Time.current },
+    { scheduled_at: 1.hour.from_now },
+    { scheduled_at: 7.5.hours.from_now },
+    { scheduled_at: 11.3.hours.from_now },
+    { scheduled_at: 15.hours.from_now },
+    { scheduled_at: 3.days.from_now },
+    { scheduled_at: 6.5.days.from_now },
+    { scheduled_at: 2.weeks.from_now },
+    { scheduled_at: 4.days.from_now },
+    { scheduled_at: 11.3.days.from_now },
+    { scheduled_at: 6.weeks.from_now },
+    { scheduled_at: 2.4.hours.ago },
+    { scheduled_at: 15.3.hours.ago },
+    { scheduled_at: 2.days.ago },
+    { scheduled_at: 5.days.ago },
+    { scheduled_at: 4.weeks.ago },
+    { scheduled_at: 6.months.ago },
+    { scheduled_at: 1.year.ago },
+    { scheduled_at: 5.years.ago },
+    { scheduled_at: nil },
+    { scheduled_at: nil },
+    { scheduled_at: nil }
+].cycle(2)
 end
 
 def demo_game_data # rubocop:disable Metrics/MethodLength
