@@ -107,7 +107,7 @@ def demo_game_session_data
     { scheduled_at: nil },
     { scheduled_at: nil },
     { scheduled_at: nil }
-].cycle(2)
+  ].cycle(2)
 end
 
 def demo_game_data # rubocop:disable Metrics/MethodLength
