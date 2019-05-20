@@ -1,8 +1,9 @@
 <h1>Game sessions</h1>
 
-<%= link_to 'Past', past_game_sessions_path %>
-<%= link_to 'Upcoming', upcoming_game_sessions_path %>
 <%= link_to 'All', game_sessions_path %>
+<%= link_to 'Upcoming', upcoming_game_sessions_path %>
+<%= link_to 'Past', past_game_sessions_path %>
+<%= link_to 'Created', created_game_sessions_path %>
 
 <ul>
   <%= render @game_sessions %>

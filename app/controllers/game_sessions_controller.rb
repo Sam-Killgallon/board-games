@@ -6,8 +6,9 @@ class GameSessionsController < ApplicationController
 
   def index
     @game_sessions = case params[:filter]
-                     when 'past' then current_user.past_game_sessions
+                     when 'past'     then current_user.past_game_sessions
                      when 'upcoming' then current_user.upcoming_game_sessions
+                     when 'created'  then current_user.created_game_sessions
                      else current_user.game_sessions
                      end
   end
