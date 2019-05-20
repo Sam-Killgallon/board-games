@@ -6,6 +6,8 @@ namespace :demo do # rubocop:disable Metrics/BlockLength
 
   desc 'Generate some demo games for the application'
   task generate_games: :environment do
+    raise 'Cannot be run in production!' if Rails.env.production?
+
     puts 'This game data was generated randomly and does not reflect the attributes of the actual game'
 
     total = demo_game_data.size
@@ -19,6 +21,8 @@ namespace :demo do # rubocop:disable Metrics/BlockLength
 
   desc 'Generate some demo game sessions for the application'
   task generate_game_sessions: :environment do
+    raise 'Cannot be run in production!' if Rails.env.production?
+
     total = demo_game_session_data.size
     demo_game_session_data.each_with_index do |game_session_data, index|
       print "Creating game session #{index + 1} / #{total}\r"
@@ -42,6 +46,8 @@ namespace :demo do # rubocop:disable Metrics/BlockLength
 
   desc 'Generate some demo users for the application'
   task generate_users: :environment do
+    raise 'Cannot be run in production!' if Rails.env.production?
+
     total = demo_user_data.size
     demo_user_data.each_with_index do |user_data, index|
       print "Creating user #{index + 1} / #{total}\r"
