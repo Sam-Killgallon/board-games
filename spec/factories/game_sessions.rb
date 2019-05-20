@@ -22,6 +22,14 @@
 
 FactoryBot.define do
   factory :game_session do
+    transient { creator { nil } }
+
+    after(:create) do |game_session, evaluator|
+      next unless evaluator.creator
+
+      create(:invitation, game_session: game_session, user: evaluator.creator, creator: true)
+    end
+
     trait :unscheduled do
       scheduled_at { nil }
     end

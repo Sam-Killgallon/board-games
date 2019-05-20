@@ -26,7 +26,5 @@
 
 FactoryBot.define do
   factory :invitation do
-    user { nil }
-    game_session { nil }
   end
 end

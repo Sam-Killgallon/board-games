@@ -35,6 +35,10 @@ class User < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :game_sessions, through: :invitations
 
+  def created_game_sessions
+    game_sessions.where(invitations: { creator: true })
+  end
+
   def past_game_sessions
     game_sessions.past
   end
