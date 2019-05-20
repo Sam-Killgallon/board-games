@@ -13,7 +13,8 @@ class GameSessionsController < ApplicationController
   end
 
   def create
-    redirect_to GameSession.create!(users: [current_user])
+    game_session = CreateGameSession.call(creator: current_user)
+    redirect_to game_session
   end
 
   def show

@@ -22,8 +22,9 @@ namespace :demo do # rubocop:disable Metrics/BlockLength
     total = demo_game_session_data.size
     demo_game_session_data.each_with_index do |game_session_data, index|
       print "Creating game session #{index + 1} / #{total}\r"
-      users = User.order('RANDOM()').limit(rand(10))
-      GameSession.create(**game_session_data, users: users)
+      users = User.order('RANDOM()').limit(rand(2..10)).to_a
+      game_session = CreateGameSession.call(creator: users.pop)
+      game_session.update!(**game_session_data, users: users)
     end
     puts ''
 
