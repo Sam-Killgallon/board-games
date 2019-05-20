@@ -31,7 +31,7 @@ class GameSession < ApplicationRecord
 
   def available_games
     # Return all distinct games which are owned by a user in this session
-    Game.joins(:ownerships).where(ownerships: { user: users }).distinct
+    Game.joins(:ownerships).where(ownerships: { user: users }).distinct.by_title
   end
 
   def attending_users

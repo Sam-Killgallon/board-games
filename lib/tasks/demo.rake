@@ -46,7 +46,7 @@ namespace :demo do # rubocop:disable Metrics/BlockLength
       print "Creating user #{index + 1} / #{total}\r"
       password = 'password'
       # Workaround default_scope with 'unscoped'
-      games = Game.unscoped.order('RANDOM()').limit(rand(40))
+      games = Game.order('RANDOM()').limit(rand(40))
       User.create(**user_data, password: password, password_confirmation: password, games: games)
     end
     puts ''

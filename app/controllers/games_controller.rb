@@ -5,16 +5,16 @@ class GamesController < ApplicationController
 
   def search
     searched = Game.arel_table[:title].matches("%#{params[:q]}%")
-    @games = Game.where(searched).where.not(id: current_user.game_ids)
+    @games = Game.where(searched).where.not(id: current_user.game_ids).by_title
   end
 
   def index
-    @games = current_user.games
+    @games = current_user.games.by_title
   end
 
   def new
     # Only return list games that the user doesn't already have
-    @games = Game.where.not(id: current_user.game_ids)
+    @games = Game.where.not(id: current_user.game_ids).by_title
   end
 
   def update

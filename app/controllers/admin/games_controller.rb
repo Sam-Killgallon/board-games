@@ -2,7 +2,7 @@
 
 class Admin::GamesController < Admin::ApplicationController
   def index
-    @games = Game.all
+    @games = Game.by_title
   end
 
   def show

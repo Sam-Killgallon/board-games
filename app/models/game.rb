@@ -33,5 +33,5 @@ class Game < ApplicationRecord
   has_many :game_sessions, dependent: :restrict_with_exception
   has_one_attached :box_image
 
-  default_scope -> { order(:title) }
+  scope :by_title, -> { order(:title) }
 end
