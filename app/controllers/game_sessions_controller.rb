@@ -25,6 +25,7 @@ class GameSessionsController < ApplicationController
 
   def update
     game_session = GameSession.find(params[:id])
+    # TODO: Validate that the submited game is suitable
     game_session.update(game_session_params)
     redirect_to game_session
   end

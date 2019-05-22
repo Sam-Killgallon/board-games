@@ -38,7 +38,9 @@ RSpec.describe 'GameSessions' do
   end
 
   it 'allows users to create a game session with friends', js: true do
-    current_user_games = create_list(:game, 3)
+    # Ensure at least one game has the correct number of players
+    valid_game = create(:game, min_players: 3, max_players: 5)
+    current_user_games = create_list(:game, 3) << valid_game
     current_user.games = current_user_games
     friend1_games = create_list(:game, 2)
     friend1 = create(:user, games: friend1_games)
@@ -80,9 +82,8 @@ RSpec.describe 'GameSessions' do
     end
 
     expect(page).to have_no_content('Chosen game')
-    chosen_game = friend2_games.first
-    find('li', text: chosen_game.title).click_on 'Choose game'
-    expect(page).to have_content("Chosen game: #{chosen_game.title}")
+    find('li', text: valid_game.title, exact_text: true).click_on 'Choose game'
+    expect(page).to have_content("Chosen game: #{valid_game.title}")
 
     target_date = 1.week.from_now
     find('input#game_session_scheduled_at').click

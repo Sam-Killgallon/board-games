@@ -35,6 +35,14 @@ class GameSession < ApplicationRecord
     games.distinct.by_title
   end
 
+  def suitable_games
+    available_games.where(suitable_query)
+  end
+
+  def unsuitable_games
+    available_games.where.not(suitable_query)
+  end
+
   def attending_users
     users.where(invitations: { rsvp: :attending })
   end
@@ -45,5 +53,14 @@ class GameSession < ApplicationRecord
 
   def declined_users
     users.where(invitations: { rsvp: :declined })
+  end
+
+  private
+
+  def suitable_query
+    min_players_condition = Game.arel_table[:min_players].lteq(users.size)
+    max_players_condition = Game.arel_table[:max_players].gteq(users.size)
+
+    min_players_condition.and(max_players_condition)
   end
 end
