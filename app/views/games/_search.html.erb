@@ -1,17 +1,31 @@
-<table id="games">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th></th>
-    </tr>
-  </thead>
+<div id="search-results">
+  <%= search_field_tag 'q', @q, data: { url: new_game_path, remote: true }, placeholder: 'Search for a game to add' %>
 
-  <tbody>
-    <% @games.each do |game| %>
-      <tr>
-        <td><%= game.title %></td>
-        <td><%= button_to 'Add game', game, method: :patch, data: { 'disable-with': 'Added game!'} %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <% if @games.any? %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @games.each do |game| %>
+          <tr>
+            <td><%= game.title %></td>
+            <td class="text-left">
+              <%= button_to 'Add game', game, method: :patch, remote: true, data: { 'disable-with': 'Adding game' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% else %>
+
+    Sorry, no results were found. Please try a different search term
+
+  <% end %>
+</div>

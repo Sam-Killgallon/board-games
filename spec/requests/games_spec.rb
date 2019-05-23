@@ -50,9 +50,10 @@ RSpec.describe 'Games' do
       let(:user)                { create(:user, games: original_user_games) }
       before { sign_in user }
 
-      it 'returns a success status code' do
+      it 'redirects to the new games list' do
         subject
-        expect(response).to be_successful
+        expect(response).to have_http_status(302)
+        expect(response.location).to eql(new_game_url)
       end
 
       it 'associates the game with the signed in user' do
@@ -87,23 +88,6 @@ RSpec.describe 'Games' do
         expect { subject }.to change { user.reload.games }
           .from(match_array(original_user_games))
           .to(match_array(original_user_games.excluding(game)))
-      end
-    end
-  end
-
-  describe 'GET /games/search' do
-    subject { get games_url(q: 'foo') }
-
-    context 'when not signed in' do
-      it_behaves_like 'not found'
-    end
-
-    context 'when signed in' do
-      before { sign_in create(:user) }
-
-      it 'returns a success status code' do
-        subject
-        expect(response).to be_successful
       end
     end
   end
