@@ -25,6 +25,9 @@ class GamesController < ApplicationController
 
   def destroy
     current_user.games.destroy(params[:id])
-    redirect_to games_path, notice: 'Game was successfully destroyed.'
+    respond_to do |format|
+      format.js   { @id = params[:id] }
+      format.html { redirect_to games_path, notice: 'Game was successfully destroyed.' }
+    end
   end
 end

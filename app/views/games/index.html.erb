@@ -21,9 +21,9 @@
 
         <tbody>
           <% @games.each do |game| %>
-            <tr>
+            <tr id="game-<%= game.id %>">
               <td><%= game.title %></td>
-              <td><%= link_to 'Remove', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Remove', game, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </tbody>
