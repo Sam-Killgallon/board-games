@@ -90,7 +90,7 @@ def demo_user_data # rubocop:disable Metrics/MethodLength
   ]
 end
 
-def demo_game_session_data
+def demo_game_session_data # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   [
     { scheduled_at: Time.current },
     { scheduled_at: 1.hour.from_now },
