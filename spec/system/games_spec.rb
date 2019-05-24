@@ -25,12 +25,15 @@ RSpec.describe 'Games' do
 
     find('input[type="search"]').set("game o\n")
     find('tr', text: 'Game of Thrones').click_on 'Add game'
+    expect(page).to have_content('Added Game of Thrones to your games')
 
     find('input[type="search"]').set("chki\n")
     find('tr', text: 'Munchkin').click_on 'Add game'
+    expect(page).to have_content('Added Munchkin to your games')
 
     find('input[type="search"]').set("ride\n")
     find('tr', text: 'Ticket to ride').click_on 'Add game'
+    expect(page).to have_content('Added Ticket to ride to your games')
 
     click_on 'Back'
 
