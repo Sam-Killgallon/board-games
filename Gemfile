@@ -12,9 +12,12 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0.beta2'
 gem 'sendgrid-ruby', '~> 5.3.0'
-gem 'stackdriver', '~> 0.15.3'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '>= 4.0.0'
+
+group :production do
+  gem 'stackdriver', '~> 0.15.3'
+end
 
 group :development, :test do
   # Reduces boot times through caching; required in config/boot.rb
