@@ -15,7 +15,7 @@
         <thead>
           <tr>
             <th>Title</th>
-            <th></th>
+            <th colspan="2"></th>
           </tr>
         </thead>
 
@@ -23,6 +23,7 @@
           <% @games.each do |game| %>
             <tr id="game-<%= game.id %>">
               <td><%= game.title %></td>
+              <td><%= link_to 'Show', game %></td>
               <td><%= link_to 'Remove', game, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>

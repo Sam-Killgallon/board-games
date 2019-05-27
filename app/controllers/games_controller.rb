@@ -17,6 +17,10 @@ class GamesController < ApplicationController
     @games = partial_query.where.not(id: current_user.game_ids).by_title
   end
 
+  def show
+    @game = Game.find(params[:id])
+  end
+
   def update
     game = Game.find(params[:id])
     current_user.games << game
