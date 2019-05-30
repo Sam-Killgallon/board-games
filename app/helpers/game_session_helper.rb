@@ -8,4 +8,8 @@ module GameSessionHelper
   def upcoming_game_sessions_path
     game_sessions_path(filter: 'upcoming')
   end
+
+  def created_game_sessions_path
+    game_sessions_path(filter: 'created')
+  end
 end

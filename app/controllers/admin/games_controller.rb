@@ -2,7 +2,7 @@
 
 class Admin::GamesController < Admin::ApplicationController
   def index
-    @games = Game.all
+    @games = Game.by_title
   end
 
   def show
@@ -20,6 +20,8 @@ class Admin::GamesController < Admin::ApplicationController
   def create
     @game = Game.new(game_params)
 
+    # TODO: Validate the uploaded image is not larger than 16k x 16k (Max size imagemagick will
+    # handle by default)
     if @game.save
       GenerateTextBoxImagePreview.call(@game)
       redirect_to [:admin, @game], notice: 'Game was successfully created.'

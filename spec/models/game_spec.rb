@@ -29,11 +29,15 @@ RSpec.describe Game do
     expect(game.errors[:max_players]).to include('must be greater than or equal to min players (3)')
   end
 
-  it 'should be ordered by title' do
-    beta = create(:game, title: 'Beta')
-    charlie = create(:game, title: 'Charlie')
-    alpha = create(:game, title: 'Alpha')
+  describe '.by_title' do
+    subject { described_class.by_title }
 
-    expect(described_class.all).to eq([alpha, beta, charlie])
+    it 'should be ordered by title' do
+      beta = create(:game, title: 'Beta')
+      charlie = create(:game, title: 'Charlie')
+      alpha = create(:game, title: 'Alpha')
+
+      expect(subject).to eq([alpha, beta, charlie])
+    end
   end
 end

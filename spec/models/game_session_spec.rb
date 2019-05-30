@@ -76,6 +76,70 @@ RSpec.describe GameSession do
     end
   end
 
+  describe '#suitable_games' do
+    subject { instance.suitable_games }
+
+    let(:game_1) { create(:game, min_players: 2, max_players: 4) }
+    let(:game_2) { create(:game, min_players: 5, max_players: 5) }
+    let(:game_3) { create(:game, min_players: 1, max_players: 2) }
+
+    context 'when the number of players are between the min and max for the game' do
+      before { create_list(:user, 3, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'includes the game' do
+        is_expected.to contain_exactly(game_1)
+      end
+    end
+
+    context 'when the number of players is equal to the min number of players for the game' do
+      before { create_list(:user, 1, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'includes the game' do
+        is_expected.to contain_exactly(game_3)
+      end
+    end
+
+    context 'when the number of players is equal to the max number of players for the game' do
+      before { create_list(:user, 2, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'includes the game' do
+        is_expected.to contain_exactly(game_1, game_3)
+      end
+    end
+  end
+
+  describe '#unsuitable_games' do
+    subject { instance.unsuitable_games }
+
+    let(:game_1) { create(:game, min_players: 2, max_players: 4) }
+    let(:game_2) { create(:game, min_players: 5, max_players: 5) }
+    let(:game_3) { create(:game, min_players: 1, max_players: 2) }
+
+    context 'when the number of players are between the min and max for the game' do
+      before { create_list(:user, 3, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'does not include the game' do
+        is_expected.to contain_exactly(game_2, game_3)
+      end
+    end
+
+    context 'when the number of players is equal to the min number of players for the game' do
+      before { create_list(:user, 1, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'does not include the game' do
+        is_expected.to contain_exactly(game_1, game_2)
+      end
+    end
+
+    context 'when the number of players is equal to the max number of players for the game' do
+      before { create_list(:user, 2, games: [game_1, game_2, game_3], game_sessions: [instance]) }
+
+      it 'does not include the game' do
+        is_expected.to contain_exactly(game_2)
+      end
+    end
+  end
+
   describe '#available_games' do
     subject { instance.available_games }
     let(:game_1) { create(:game) }

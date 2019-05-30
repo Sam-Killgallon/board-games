@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_02_174430) do
+ActiveRecord::Schema.define(version: 2019_05_20_214204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2019_05_02_174430) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "rsvp", default: 0, null: false
+    t.boolean "creator", default: false, null: false
     t.index ["game_session_id"], name: "index_invitations_on_game_session_id"
     t.index ["user_id", "game_session_id"], name: "index_invitations_on_user_id_and_game_session_id", unique: true
     t.index ["user_id"], name: "index_invitations_on_user_id"

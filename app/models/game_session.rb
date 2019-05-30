@@ -24,6 +24,7 @@ class GameSession < ApplicationRecord
   belongs_to :game, optional: true
   has_many :invitations, dependent: :destroy
   has_many :users, through: :invitations
+  has_many :games, through: :users
 
   scope :past,        -> { where('scheduled_at <= ?', Time.current) }
   scope :upcoming,    -> { where('scheduled_at >= ?', Time.current) }
@@ -31,18 +32,35 @@ class GameSession < ApplicationRecord
 
   def available_games
     # Return all distinct games which are owned by a user in this session
-    Game.joins(:ownerships).where(ownerships: { user: users }).distinct
+    games.distinct.by_title
+  end
+
+  def suitable_games
+    available_games.where(suitable_query)
+  end
+
+  def unsuitable_games
+    available_games.where.not(suitable_query)
   end
 
   def attending_users
-    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :attending })
+    users.where(invitations: { rsvp: :attending })
   end
 
   def not_responded_users
-    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :not_responded })
+    users.where(invitations: { rsvp: :not_responded })
   end
 
   def declined_users
-    User.joins(:invitations).where(invitations: { game_session: self, rsvp: :declined })
+    users.where(invitations: { rsvp: :declined })
+  end
+
+  private
+
+  def suitable_query
+    min_players_condition = Game.arel_table[:min_players].lteq(users.size)
+    max_players_condition = Game.arel_table[:max_players].gteq(users.size)
+
+    min_players_condition.and(max_players_condition)
   end
 end

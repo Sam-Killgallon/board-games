@@ -6,23 +6,26 @@ class GameSessionsController < ApplicationController
 
   def index
     @game_sessions = case params[:filter]
-                     when 'past' then current_user.past_game_sessions
+                     when 'past'     then current_user.past_game_sessions
                      when 'upcoming' then current_user.upcoming_game_sessions
+                     when 'created'  then current_user.created_game_sessions
                      else current_user.game_sessions
                      end
   end
 
   def create
-    redirect_to GameSession.create!(users: [current_user])
+    game_session = CreateGameSession.call(creator: current_user)
+    redirect_to game_session
   end
 
   def show
-    @game_session = GameSession.includes(:users, :invitations).find(params[:id])
+    @game_session = GameSession.find(params[:id])
     @current_user_invitation = @game_session.invitations.find_by(user: current_user)
   end
 
   def update
     game_session = GameSession.find(params[:id])
+    # TODO: Validate that the submited game is suitable
     game_session.update(game_session_params)
     redirect_to game_session
   end

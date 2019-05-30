@@ -22,5 +22,14 @@ module BoardGames
       generate.helper false
       generate.assets false
     end
+
+    config.action_mailer.smtp_settings = {
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      domain: 'pendium.killgallon.tech',
+      authentication: :plain,
+      user_name: 'apikey',
+      password: Rails.application.credentials.dig(:sendgrid, :api_key)
+    }
   end
 end

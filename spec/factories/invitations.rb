@@ -5,6 +5,7 @@
 # Table name: invitations
 #
 #  id              :bigint(8)        not null, primary key
+#  creator         :boolean          default(FALSE), not null
 #  rsvp            :integer          default("not_responded"), not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
@@ -25,7 +26,5 @@
 
 FactoryBot.define do
   factory :invitation do
-    user { nil }
-    game_session { nil }
   end
 end

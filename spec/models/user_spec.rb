@@ -47,6 +47,18 @@ RSpec.describe User do
     end
   end
 
+  describe '#created_game_sessions' do
+    subject { instance.created_game_sessions }
+
+    let!(:created_game_sessions)   { create_list(:game_session, 3, creator: instance) }
+    let!(:invited_game_sessions)   { create_list(:game_session, 3, users: [instance]) }
+    let!(:unrelated_game_sessions) { create_list(:game_session, 3) }
+
+    it 'returns all game sessions the user created' do
+      expect(subject).to match_array(created_game_sessions)
+    end
+  end
+
   describe '#past_game_sessions' do
     subject { instance.past_game_sessions }
 

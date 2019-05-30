@@ -52,10 +52,26 @@
   <%= form.submit 'Add player' %>
 <% end %>
 
+<!-- Games where we have the right number of players -->
 <h3>Available games</h3>
-<% @game_session.available_games.each do |game| %>
-  <%= form_with model: @game_session, method: :patch, local: true do |form| %>
-    <%= form.hidden_field :game_id, value: game.id %>
-    <li><%= game.title %> <%= form.submit 'Choose game' %></li>
+<ul>
+  <% @game_session.suitable_games.each do |game| %>
+    <%= form_with model: @game_session, method: :patch, local: true do |form| %>
+      <%= form.hidden_field :game_id, value: game.id %>
+      <li><%= game.title %> <%= form.submit 'Choose game' %></li>
+    <% end %>
   <% end %>
-<% end %>
+</ul>
+
+<!--
+  Games where:
+    max_players is lower than the number of people invited
+  or
+    min_players is greater than the number of people invited
+-->
+<h3>Unavailable games</h3>
+<ul>
+  <% @game_session.unsuitable_games.each do |game| %>
+    <li><%= game.title %></li>
+  <% end %>
+</ul>
