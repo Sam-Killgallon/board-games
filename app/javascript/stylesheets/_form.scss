@@ -9,10 +9,10 @@ label {
 
 .field, .field_with_errors {
   display: inline;
+  margin-bottom: $spacing * 1.5;
   input {
     border: none;
     border-bottom: 1px solid $color-grey;
-    margin-bottom: $spacing;
     min-height: $spacing-large;
     padding: 0 $spacing-small;
     width: 100%;
