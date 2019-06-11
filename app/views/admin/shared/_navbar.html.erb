@@ -1,42 +1,47 @@
-<div class="navbar navbar-dark nav" id="navbar">
+<div class="navbar navbar-dark" id="navbar">
   <% if user_signed_in? %>
-  <ul class="navbar__left">
-    <li class="nav__item">
-      <%= nav_link_to 'Home', root_path %>
-    </li>
+  <div class="navbar__logo"><%= nav_link_to 'Home', root_path %></div>
+  <input class="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
+  <label class="navbar__menu-icon" for="navbar__menu-btn"><span class="navicon"></span></label>
+  <ul class="navbar__menu">
+    <div class="navbar__left">
+      <li class="navbar__item">
+        <%= nav_link_to 'Admin panel', admin_root_path %>
+      </li>
 
-    <li class="nav__item">
-      <%= nav_link_to 'Admin panel', admin_root_path %>
-    </li>
+      <li class="navbar__item">
+        <%= nav_link_to 'Games', games_path %>
+      </li>
 
-    <li class="nav__item">
-      <%= nav_link_to 'Games', games_path %>
-    </li>
+      <li class="navbar__item">
+        <%= nav_link_to 'Game sessions', game_sessions_path %>
+      </li>
+    </div>
 
-    <li class="nav__item">
-      <%= nav_link_to 'Game sessions', game_sessions_path %>
-    </li>
-  </ul>
+    <div class="navbar__right">
+      <li class="navbar__item">
+        <%= nav_link_to current_user.email, edit_user_registration_path %>
+      </li>
 
-  <ul class="navbar__right">
-    <li class="nav__item">
-      <%= nav_link_to current_user.email, edit_user_registration_path %>
-    </li>
-
-    <li class="nav__item">
-      <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
-    </li>
+      <li class="navbar__item">
+        <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      </li>
+    </div>
   </ul>
 
   <% else %>
-  <ul class="navbar__right">
-    <li class="nav__item">
-      <%= nav_link_to 'Sign up', new_user_registration_path %>
-    </li>
+  <input class="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
+  <label class="navbar__menu-icon" for="navbar__menu-btn"><span class="navicon"></span></label>
+  <ul class="navbar__menu">
+    <div class="navbar__right">
+      <li class="navbar__item">
+        <%= nav_link_to 'Sign up', new_user_registration_path %>
+      </li>
 
-    <li class="nav__item">
-      <%= nav_link_to 'Log in', new_user_session_path %>
-    </li>
+      <li class="navbar__item">
+        <%= nav_link_to 'Log in', new_user_session_path %>
+      </li>
+    </div>
   </ul>
 
   <% end %>
