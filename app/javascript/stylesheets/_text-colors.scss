@@ -1,0 +1,21 @@
+.color-text { color: $color-text !important; }
+.color-muted { color: lighten($color-text, 30%) !important; }
+
+.color-primary { color: $color-primary !important; }
+.color-secondary { color: $color-secondary !important; }
+
+.color-grey { color: $color-grey !important; }
+.color-grey-light { color: $color-grey-light !important; }
+.color-grey-dark { color: $color-grey-dark !important; }
+
+.color-black { color: #000 !important; }
+.color-white { color: #fff !important; }
+
+.color-action { color: $color-action !important; }
+.color-info { color: $color-info !important; }
+.color-success { color: $color-success !important; }
+.color-warning { color: $color-warning !important; }
+.color-danger, .color-error { color: $color-danger !important; }
+
+.color-link-hover:hover { color: $color-action !important; }
+.color-danger-hover:hover { color: $color-danger !important; }
