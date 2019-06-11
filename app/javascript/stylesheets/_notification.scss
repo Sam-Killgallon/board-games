@@ -1,6 +1,6 @@
 .notification {
+  animation: slide 5000 ease-in-out reverse;
   border-radius: $base-border-radius;
-  bottom: $spacing;
   box-shadow: $base-shadow;
   color: #fff;
   margin-top: $spacing-tiny;
@@ -10,19 +10,28 @@
   right: $spacing;
   text-align: right;
   text-shadow: 1px 1px 1px rgba(0,0,0,.35);
+  top: $spacing;
   z-index: 9999;
+  transition: .12s ease-out;
+
   &.alert {
     background-color: $color-danger;
     margin-bottom: unset;
     border: unset;
   }
+
   &.notice {
     background-color: $color-success;
   }
+
 }
 
 .delete {
+  // background-color: transparent;
+  // border: none;
+  // color: white;
+  cursor: pointer;
   position: absolute;
-  top: $spacing-tiny;
   right: $spacing-tiny;
+  top: $spacing-tiny;
 }
