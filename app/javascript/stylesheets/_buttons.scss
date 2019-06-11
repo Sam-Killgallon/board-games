@@ -12,6 +12,10 @@
   white-space: nowrap;
 }
 
+.btn--small {
+  padding: $btn-padding / 3 $btn-padding;
+}
+
 .btn--circle {
   display: inline-flex;
   align-items: center;
@@ -43,20 +47,8 @@
   background-color: $color-grey-light;
 }
 
-.btn--grey-lighter {
-  background-color: $color-grey-lighter;
-}
-
-.btn--grey-lightest {
-  background-color: $color-grey-lightest;
-}
-
 .btn--grey-dark {
   background-color: $color-grey-dark;
-}
-
-.btn--grey-darker {
-  background-color: $color-grey-darker;
 }
 
 .btn--black {
@@ -114,24 +106,9 @@
   color: $color-grey-light;
 }
 
-.btn--ghost.btn--grey-lighter {
-  border-color: $color-grey-lighter;
-  color: $color-grey-lighter;
-}
-
-.btn--ghost.btn--grey-lightest {
-  border-color: $color-grey-lightest;
-  color: $color-grey-lightest;
-}
-
 .btn--ghost.btn--grey-dark {
   border-color: $color-grey-dark;
   color: $color-grey-dark;
-}
-
-.btn--ghost.btn--grey-darker {
-  border-color: $color-grey-darker;
-  color: $color-grey-darker;
 }
 
 .btn--ghost.btn--black {
@@ -163,4 +140,3 @@
   border-color: $color-danger;
   color: $color-danger;
 }
-
