@@ -37,26 +37,6 @@
   font-size: 115%;
 }
 
-.text-huge {
-  font-size: 130%;
-}
-
-.text-inherit {
-  font-size: inherit;
-}
-
-.text-bold {
-  font-weight: bold !important;
-}
-
-.text-normal {
-  font-weight: normal !important;
-}
-
-.text-italic {
-  font-style: italic;
-}
-
 .text-strike {
   text-decoration: line-through;
 }
@@ -66,12 +46,16 @@
 }
 
 .text-link {
-  display: inline;
-  border-bottom: 1px dotted;
   cursor: pointer;
   transition: .2s ease-out;
   &:hover {
-    border-bottom-style: solid;
+    background: -webkit-gradient(linear,left top,right top,from($color-primary),to($color-highlight));
+    background: linear-gradient(to right,$color-primary,$color-highlight);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    text-shadow: none;
   }
 }
 
