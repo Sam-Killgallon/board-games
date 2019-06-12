@@ -108,7 +108,7 @@
   <!-- Games where we have the right number of players -->
   <div class="mt">
     <label>Available games</label>
-    <% if @game_session.suitable_games.each %>
+    <% if @game_session.suitable_games.any? %>
       <ul class="cards my-tiny mb">
         <% @game_session.suitable_games.each do |game| %>
           <%= form_with model: @game_session, method: :patch, local: true do |form| %>
@@ -135,7 +135,7 @@
   -->
   <div class="mt">
     <label>Unavailable games</label>
-    <% if @game_session.suitable_games.each %>
+    <% if @game_session.suitable_games.any? %>
       <ul class="cards my-tiny mb">
         <% @game_session.unsuitable_games.each do |game| %>
           <div class="card card-disabled">
