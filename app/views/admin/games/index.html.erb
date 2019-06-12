@@ -7,50 +7,19 @@
 
 <div class="p">
   <div class=" grid grid--4">
-    <div class="card">
-      <div class="media">
-        <div class="media__figure">
-          <img src="https://source.unsplash.com/100x100">
-        </div>
-        <div class="media__body">
-          <h5 class="mt-0">Betrayal At House On The Hill</h5>
-          3-6 Players
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="media">
-        <div class="media__figure">
-          <img src="https://source.unsplash.com/100x100">
-        </div>
-        <div class="media__body">
-          <h5 class="mt-0">Betrayal At House On The Hill</h5>
-          3-6 Players
+    <% @showcase_games.each do |game| %>
+      <div class="card">
+        <div class="media">
+          <div class="media__figure">
+            <%= image_tag game.box_image.variant(resize: '100x100') %>
+          </div>
+          <div class="media__body">
+            <h5 class="mt-0"><%= game.title %></h5>
+            <%= game.min_players %>-<%= game.max_players %> Players
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="media">
-        <div class="media__figure">
-          <img src="https://source.unsplash.com/100x100">
-        </div>
-        <div class="media__body">
-          <h5 class="mt-0">Betrayal At House On The Hill</h5>
-          3-6 Players
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="media">
-        <div class="media__figure">
-          <img src="https://source.unsplash.com/100x100">
-        </div>
-        <div class="media__body">
-          <h5 class="mt-0">Betrayal At House On The Hill</h5>
-          3-6 Players
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
 
   <table>

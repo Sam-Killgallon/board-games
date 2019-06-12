@@ -34,4 +34,5 @@ class Game < ApplicationRecord
   has_one_attached :box_image
 
   scope :by_title, -> { order(:title) }
+  scope :random, ->(count) { order(Arel.sql('RANDOM()')).limit(count) }
 end
