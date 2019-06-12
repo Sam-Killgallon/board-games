@@ -1,34 +1,32 @@
-<div class="container">
-  <div class="banner banner-small flex">
-    <div class="m-auto">
-      <div class="banner-title">Games</div>
-    <div class="btn btn--ghost btn--grey"><%= link_to 'Add New Game', new_game_path %></div>
-    </div>
+<div class="banner banner-small flex">
+  <div class="m-auto">
+    <div class="banner-title">Games</div>
+  <div class="btn btn--ghost btn--grey"><%= link_to 'Add New Game', new_game_path %></div>
   </div>
+</div>
 
-  <div class="p text-center">
+<div class="p text-center">
 
-    <%if @games.empty? %>
-      <p>You don't have any games! Why not add one?</p>
-    <% else %>
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th colspan="2"></th>
+  <%if @games.empty? %>
+    <p>You don't have any games! Why not add one?</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @games.each do |game| %>
+          <tr id="game-<%= game.id %>">
+            <td><%= game.title %></td>
+            <td><%= link_to 'Show', game %></td>
+            <td><%= link_to 'Remove', game, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
           </tr>
-        </thead>
-
-        <tbody>
-          <% @games.each do |game| %>
-            <tr id="game-<%= game.id %>">
-              <td><%= game.title %></td>
-              <td><%= link_to 'Show', game %></td>
-              <td><%= link_to 'Remove', game, method: :delete, remote: true, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    <% end %>
-  </div>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </div>

@@ -37,26 +37,6 @@
   font-size: 115%;
 }
 
-.text-huge {
-  font-size: 130%;
-}
-
-.text-inherit {
-  font-size: inherit;
-}
-
-.text-bold {
-  font-weight: bold !important;
-}
-
-.text-normal {
-  font-weight: normal !important;
-}
-
-.text-italic {
-  font-style: italic;
-}
-
 .text-strike {
   text-decoration: line-through;
 }
@@ -66,22 +46,25 @@
 }
 
 .text-link {
-  display: inline;
-  border-bottom: 1px dotted;
   cursor: pointer;
   transition: .2s ease-out;
-}
-
-.text-link:hover {
-  border-bottom-style: solid;
+  &:hover {
+    background: -webkit-gradient(linear,left top,right top,from($color-primary),to($color-highlight));
+    background: linear-gradient(to right,$color-primary,$color-highlight);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    text-shadow: none;
+  }
 }
 
 .text-link-hover {
   cursor: pointer;
   transition: .2s ease-out;
-}
-.text-link-hover:hover {
-  border-bottom: 1px dotted;
+  &:hover {
+    border-bottom: 1px dotted;
+  }
 }
 
 /* Text wraps */
@@ -98,8 +81,7 @@
   word-break: break-all;
 }
 
-.text-breakout,
-.text-hyphens {
+.text-breakout {
   overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;

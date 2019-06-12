@@ -1,77 +1,150 @@
-<h2>Players</h2>
+<div class="banner-small flex">
+  <div class="m-auto">
+    <div class="banner-title">Create Session</div>
+  </div>
+</div>
 
-<% if @game_session.game %>
-  <h5>Chosen game: <%= @game_session.game.title %></h5>
-<% end %>
-
-<% if @game_session.scheduled_at %>
-  <h5>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at) %></h5>
-<% end %>
-
-<%= form_with model: @game_session, method: :patch, local: true do |form| %>
-  <%= form.label :scheduled_at, 'Scheduled time' %>
-  <%= form.datetime_field :scheduled_at, data: { flatpickr: true } %>
-  <%= form.submit 'Schedule' %>
-<% end %>
-
-<h4>RSVP: <%= @current_user_invitation.rsvp.humanize %></h4>
-<%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
-  <%= form.hidden_field :rsvp, value: 'attending'  %>
-  <%= form.submit 'Attend' %>
-<% end %>
-
-<%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
-  <%= form.hidden_field :rsvp, value: 'declined' %>
-  <%= form.submit 'Decline' %>
-<% end %>
-
-<h4>Invited</h4>
-<ul id="invited">
-  <% @game_session.not_responded_users.each do |user| %>
-    <li><%= user.email %></p>
+<div class="card card-floating mx-auto mb">
+  <% if @game_session.game || @game_session.scheduled_at %>
+    <div class="card__header bg-success color-white text-center">
+      <% if @game_session.game %>
+        <div>Chosen game: <%= @game_session.game.title %></div>
+      <% end %>
+      <% if @game_session.scheduled_at %>
+        <div>Scheduled at: <%= scheduled_time_in_words(@game_session.scheduled_at) %></div>
+      <% end %>
+    </div>
   <% end %>
-</ul>
+  <div class="card__body">
 
-<h4>Attending</h4>
-<ul id="attending">
-  <% @game_session.attending_users.each do |user| %>
-    <li><%= user.email %></p>
-  <% end %>
-</ul>
-
-<h4>Declined</h4>
-<ul id="declined">
-  <% @game_session.declined_users.each do |user| %>
-    <li><%= user.email %></p>
-  <% end %>
-</ul>
-
-<%= form_with url: game_session_users_path(@game_session), scope: :user, method: :post, local: true do |form| %>
-  <%= form.label :email, 'Player email' %>
-  <%= form.email_field :email  %>
-  <%= form.submit 'Add player' %>
-<% end %>
-
-<!-- Games where we have the right number of players -->
-<h3>Available games</h3>
-<ul>
-  <% @game_session.suitable_games.each do |game| %>
     <%= form_with model: @game_session, method: :patch, local: true do |form| %>
-      <%= form.hidden_field :game_id, value: game.id %>
-      <li><%= game.title %> <%= form.submit 'Choose game' %></li>
+      <div class="field">
+        <div>
+          <%= form.label :scheduled_at, 'Scheduled time' %>
+        </div>
+        <div class="input-group">
+          <span class="input-group__content"> <%= form.datetime_field :scheduled_at, data: { flatpickr: true } %> </span>
+          <span class="btn btn--secondary btn--small"> <%= form.submit 'Schedule' %> </span>
+        </div>
+      </div>
     <% end %>
-  <% end %>
-</ul>
 
-<!--
-  Games where:
-    max_players is lower than the number of people invited
-  or
-    min_players is greater than the number of people invited
--->
-<h3>Unavailable games</h3>
-<ul>
-  <% @game_session.unsuitable_games.each do |game| %>
-    <li><%= game.title %></li>
-  <% end %>
-</ul>
+    <div class="tabs">
+      <ul class="flex">
+        <li class="is-active">
+          <a data-toggle="tab" data-target="#invited">Invited</a>
+        </li>
+        <li>
+          <a data-toggle="tab" data-target="#attending">Attending</a>
+        </li>
+        <li>
+          <a data-toggle="tab" data-target="#declined">Declined</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="tab-panel is-active" id="invited">
+      <div class="tab-panel__body">
+        <ul>
+          <% @game_session.not_responded_users.each do |user| %>
+            <li><%= user.email %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="attending">
+      <div class="tab-panel__body">
+        <ul>
+          <% @game_session.attending_users.each do |user| %>
+            <li><%= user.email %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-panel" id="declined">
+      <div class="tab-panel__body">
+        <ul id="declined">
+          <% @game_session.declined_users.each do |user| %>
+            <li><%= user.email %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+
+    <%= form_with url: game_session_users_path(@game_session), scope: :user, method: :post, local: true do |form| %>
+      <div class="field">
+        <div>
+          <%= form.label :email, 'Player email' %>
+        </div>
+        <div class="input-group">
+          <span class="input-group__content"> <%= form.email_field :email  %> </span>
+          <span class="btn btn--secondary btn--small"> <%= form.submit 'Add player' %> </span>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <label class="flex">RSVP: <%= @current_user_invitation.rsvp.humanize %></label>
+    </div>
+
+    <div class="flex">
+      <div class="btn flex-grow mr-small">
+        <%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
+          <%= form.hidden_field :rsvp, value: 'attending'  %>
+          <%= form.submit 'Attend' %>
+        <% end %>
+      </div>
+
+      <div class="btn flex-grow">
+        <%= form_with url: game_session_user_path(@game_session, @current_user), scope: :user, method: :patch, local: true do |form| %>
+          <%= form.hidden_field :rsvp, value: 'declined' %>
+          <%= form.submit 'Decline' %>
+        <% end %>
+      </div>
+    </div>
+
+  <!-- Games where we have the right number of players -->
+  <div class="mt">
+    <label>Available games</label>
+    <% if @game_session.suitable_games.each %>
+      <ul class="cards my-tiny mb">
+        <% @game_session.suitable_games.each do |game| %>
+          <%= form_with model: @game_session, method: :patch, local: true do |form| %>
+            <%= form.hidden_field :game_id, value: game.id %>
+            <li class="card is-selectable">
+              <h3 class="mb-none">
+                <%= game.title %>
+              </h3>
+              <span class="mt-auto"><%= form.submit 'Choose game' %></span>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="card">TODO: Add an Empty State</div>
+    <% end %>
+  </div>
+
+  <!--
+    Games where:
+      max_players is lower than the number of people invited
+    or
+      min_players is greater than the number of people invited
+  -->
+  <div class="mt">
+    <label>Unavailable games</label>
+    <% if @game_session.suitable_games.each %>
+      <ul class="cards my-tiny mb">
+        <% @game_session.unsuitable_games.each do |game| %>
+          <div class="card card-disabled">
+            <li><%= game.title %></li>
+          </div>
+        <% end %>
+      </ul>
+    <% else %>
+      <div class="card">TODO: Add an Empty State</div>
+    <% end %>
+  </div>
+</div>

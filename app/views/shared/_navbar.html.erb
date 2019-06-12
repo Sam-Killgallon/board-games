@@ -1,57 +1,51 @@
-<div class="navbar nav flex flex--space-around" id="navbar">
-  <ul class="flex-grow">
-    <li class="nav__item">
-      <%= nav_link_to 'Home', root_path %>
-    </li>
-  </ul>
-
+<div class="navbar navbar-light" id="navbar">
   <% if user_signed_in? %>
-
-    <% if current_user.admin? %>
-      <ul class="flex-grow">
-        <li class="nav__item">
+  <div class="navbar__logo"><%= nav_link_to 'Home', root_path %></div>
+  <input class="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
+  <label class="navbar__menu-icon" for="navbar__menu-btn"><span class="navicon"></span></label>
+  <ul class="navbar__menu">
+    <div class="navbar__left">
+      <% if current_user.admin? %>
+        <li class="navbar__item">
           <%= nav_link_to 'Admin panel', admin_root_path %>
         </li>
-      </ul>
-    <% end %>
+      <% end %>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
+      <li class="navbar__item">
         <%= nav_link_to 'Games', games_path %>
       </li>
-    </ul>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
-      <%= nav_link_to 'Game sessions', game_sessions_path %>
+      <li class="navbar__item">
+        <%= nav_link_to 'Game sessions', game_sessions_path %>
       </li>
-    </ul>
+    </div>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
+    <div class="navbar__right">
+      <li class="navbar__item">
         <%= nav_link_to current_user.email, edit_user_registration_path %>
       </li>
-    </ul>
-
-    <ul class="flex-grow">
-      <li class="nav__item">
+      
+      <li class="navbar__item">
         <%= nav_link_to 'Sign out', destroy_user_session_path, method: :delete %>
       </li>
-    </ul>
+    </div>
+  </ul>
+
 
   <% else %>
-
-    <ul class="flex-grow">
-      <li class="nav__item">
-      <%= nav_link_to 'Sign up', new_user_registration_path %>
+  <input class="navbar__menu-btn" type="checkbox" id="navbar__menu-btn" />
+  <label class="navbar__menu-icon" for="navbar__menu-btn"><span class="navicon"></span></label>
+  <ul class="navbar__menu">
+    <div class="navbar__right">
+      <li class="navbar__item">
+        <%= nav_link_to 'Sign up', new_user_registration_path %>
       </li>
-    </ul>
 
-    <ul class="flex-grow">
-      <li class="nav__item">
-      <%= nav_link_to 'Log in', new_user_session_path %>
+      <li class="navbar__item">
+        <%= nav_link_to 'Log in', new_user_session_path %>
       </li>
-    </ul>
+    </div>
+  </ul>
 
   <% end %>
 </div>

@@ -1,0 +1,18 @@
+.bg-default,
+.bg-transparent         { background-color: transparent !important; }
+
+.bg-primary             { background-color: $color-primary !important; }
+.bg-secondary           { background-color: $color-secondary !important; }
+
+.bg-grey                { background-color: $color-grey !important; }
+.bg-grey-light          { background-color: $color-grey-light !important; }
+.bg-grey-dark           { background-color: $color-grey-dark !important; }
+.bg-black               { background-color: #000 !important; }
+.bg-white               { background-color: white !important; }
+
+.bg-action              { background-color: $color-action !important; }
+.bg-info                { background-color: $color-info !important; }
+.bg-success             { background-color: $color-success !important; }
+.bg-warning             { background-color: $color-warning !important; }
+.bg-error,
+.bg-danger              { background-color: $color-danger !important; }

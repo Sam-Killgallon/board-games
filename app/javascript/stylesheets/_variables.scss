@@ -1,0 +1,72 @@
+$color-text: rgb(70, 70, 70);
+$color-white: rgb(255, 255, 255);
+$color-black: rgb(0, 0, 0);
+
+$color-grey: rgb(71, 70, 67);
+$color-grey-light: rgb(203, 203, 203);
+$color-grey-lighter: rgb(237, 237, 237);
+$color-grey-lightest: rgb(247, 247, 247);
+$color-grey-dark: rgb(34, 38, 62);
+$color-off-white: rgb(247, 247, 247);
+
+$color-primary: rgb(255, 222, 0);
+$color-secondary: rgb(66, 63, 56);
+$color-highlight: #4ABDAC;
+
+$color-action: $color-primary;
+$color-info: rgb(85, 175, 195);
+$color-success: rgb(96, 185, 40);
+$color-warning: rgb(228, 157, 51);
+$color-danger: rgb(223, 46, 78);
+
+/* SPACING */
+$spacing: 1rem;
+$spacing-tiny: $spacing / 4;
+$spacing-small: $spacing / 2;
+$spacing-large: $spacing * 2;
+$spacing-huge: $spacing * 4;
+
+/* NAVS */
+$nav-item-padding: $spacing;
+$nav-item-padding-narrow: $spacing-small;
+$nav-item-border: 2px;
+
+/* TYPOGRAPHY */
+
+$main-font: 'Open Sans', 'Helvetica', 'Arial', sans-serif;
+$base-font-family: $main-font;
+
+$base-font-color: $color-text;
+
+/* Font Sizes */
+$base-font-size: .9375rem;
+$font-size-small: .875em;
+$font-size-smaller: .775em;
+$font-size-tiny: .625em;
+
+/* Line height */
+$base-line-height: 1.5;
+$heading-line-height: 1.2;
+
+/* BORDERS */
+
+$base-border-radius: 5px;
+$base-border-color: $color-grey-lighter;
+$base-border-width: 1px;
+$base-border: $base-border-width solid $base-border-color;
+
+/* SHADOWS */
+
+$base-shadow: 0 1px 3px 0 rgba(0,0,0,.25);
+$base-shadow-large: 0 4px 10px 0 rgba(0,0,0,.25);
+$base-shadow-huge: 0 8px 20px -5px rgba(0, 0, 0, .15);
+
+/* BUTTONS */
+
+$btn-padding : $spacing / 2;
+$btn-padding--small : $btn-padding / 2;
+$btn-padding--tiny : $btn-padding--small / 2;
+$btn-padding--large : $btn-padding * 2;
+$btn-background : $color-primary;
+$btn-color : white;
+$btn-radius : $base-border-radius;

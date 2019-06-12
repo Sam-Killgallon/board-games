@@ -1,78 +1,76 @@
-<div class="container">
-  <div class="banner banner-small banner-dark flex">
-    <div class="m-auto">
-      <div class="banner-title">Games</div>
-    <div class="btn btn--ghost"><%= link_to 'Add New Game', new_admin_game_path %></div>
+<div class="banner banner-small banner-dark flex">
+  <div class="m-auto">
+    <div class="banner-title">Games</div>
+  <div class="btn btn--ghost"><%= link_to 'Add New Game', new_admin_game_path %></div>
+  </div>
+</div>
+
+<div class="p">
+  <div class=" grid grid--4">
+    <div class="card">
+      <div class="media">
+        <div class="media__figure">
+          <img src="https://source.unsplash.com/100x100">
+        </div>
+        <div class="media__body">
+          <h5 class="mt-0">Betrayal At House On The Hill</h5>
+          3-6 Players
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="media">
+        <div class="media__figure">
+          <img src="https://source.unsplash.com/100x100">
+        </div>
+        <div class="media__body">
+          <h5 class="mt-0">Betrayal At House On The Hill</h5>
+          3-6 Players
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="media">
+        <div class="media__figure">
+          <img src="https://source.unsplash.com/100x100">
+        </div>
+        <div class="media__body">
+          <h5 class="mt-0">Betrayal At House On The Hill</h5>
+          3-6 Players
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="media">
+        <div class="media__figure">
+          <img src="https://source.unsplash.com/100x100">
+        </div>
+        <div class="media__body">
+          <h5 class="mt-0">Betrayal At House On The Hill</h5>
+          3-6 Players
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="p">
-    <div class=" grid grid--4">
-      <div class="card">
-        <div class="media">
-          <div class="media__figure">
-            <img src="https://source.unsplash.com/100x100">
-          </div>
-          <div class="media__body">
-            <h5 class="mt-0">Betrayal At House On The Hill</h5>
-            3-6 Players
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="media">
-          <div class="media__figure">
-            <img src="https://source.unsplash.com/100x100">
-          </div>
-          <div class="media__body">
-            <h5 class="mt-0">Betrayal At House On The Hill</h5>
-            3-6 Players
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="media">
-          <div class="media__figure">
-            <img src="https://source.unsplash.com/100x100">
-          </div>
-          <div class="media__body">
-            <h5 class="mt-0">Betrayal At House On The Hill</h5>
-            3-6 Players
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="media">
-          <div class="media__figure">
-            <img src="https://source.unsplash.com/100x100">
-          </div>
-          <div class="media__body">
-            <h5 class="mt-0">Betrayal At House On The Hill</h5>
-            3-6 Players
-          </div>
-        </div>
-      </div>
-    </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Players</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
 
-    <table>
-      <thead>
+    <tbody>
+      <% @games.each do |game| %>
         <tr>
-          <th>Title</th>
-          <th>Players</th>
-          <th colspan="3"></th>
+          <td><%= link_to game.title, [:admin, game] %></td>
+          <td><%= game.min_players %>-<%= game.max_players %></td>
+          <td><%= link_to 'Edit', [:edit, :admin, game] %></td>
+          <td><%= link_to 'Destroy', [:admin, game], method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      </thead>
-
-      <tbody>
-        <% @games.each do |game| %>
-          <tr>
-            <td><%= link_to game.title, [:admin, game] %></td>
-            <td><%= game.min_players %>-<%= game.max_players %></td>
-            <td><%= link_to 'Edit', [:edit, :admin, game] %></td>
-            <td><%= link_to 'Destroy', [:admin, game], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 </div>

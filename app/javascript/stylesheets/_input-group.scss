@@ -1,0 +1,14 @@
+.input-group {
+  align-items: center;
+  display: flex;
+  text-align: left;
+  &__content {
+    flex-grow: 1;
+    input {
+      min-height: 41px !important;
+    }
+  }
+  .btn {
+    margin-left: $spacing-small;
+  }
+}

@@ -1,0 +1,134 @@
+  /* Margin all */
+  .m-0,
+  .m-none  { margin: 0 !important; }
+  .m       { margin: $spacing !important; }
+  .m-tiny  { margin: $spacing-tiny !important; }
+  .m-small { margin: $spacing-small !important; }
+  .m-large { margin: $spacing-large !important; }
+  .m-huge  { margin: $spacing-huge !important; }
+  .m-auto  { margin: auto !important; }
+  
+  /* Margin top */
+  .mt-0,
+  .mt-none  { margin-top: 0 !important; }
+  .mt       { margin-top: $spacing !important; }
+  .mt-tiny  { margin-top: $spacing-tiny !important; }
+  .mt-small { margin-top: $spacing-small !important; }
+  .mt-large { margin-top: $spacing-large !important; }
+  .mt-huge  { margin-top: $spacing-huge !important; }
+  .mt-auto  { margin-top: auto !important; }
+  
+  /* Margin right */
+  .mr-0,
+  .mr-none  { margin-right: 0 !important; }
+  .mr       { margin-right: $spacing !important; }
+  .mr-tiny  { margin-right: $spacing-tiny !important; }
+  .mr-small { margin-right: $spacing-small !important; }
+  .mr-large { margin-right: $spacing-large !important; }
+  .mr-huge  { margin-right: $spacing-huge !important; }
+  .mr-auto  { margin-right: auto !important; }
+  
+  /* Margin bottom */
+  .mb-0,
+  .mb-none  { margin-bottom: 0 !important; }
+  .mb       { margin-bottom: $spacing !important; }
+  .mb-tiny  { margin-bottom: $spacing-tiny !important; }
+  .mb-small { margin-bottom: $spacing-small !important; }
+  .mb-large { margin-bottom: $spacing-large !important; }
+  .mb-huge  { margin-bottom: $spacing-huge !important; }
+  .mb-auto  { margin-bottom: auto !important; }
+  
+  /* Margin Left */
+  .ml-0,
+  .ml-none  { margin-left: 0 !important; }
+  .ml       { margin-left: $spacing !important; }
+  .ml-tiny  { margin-left: $spacing-tiny !important; }
+  .ml-small { margin-left: $spacing-small !important; }
+  .ml-large { margin-left: $spacing-large !important; }
+  .ml-huge  { margin-left: $spacing-huge !important; }
+  .ml-auto  { margin-left: auto !important; }
+  
+  /* Margin Top & Bottom */
+  .my-0,
+  .my-none  { margin-top: 0 !important; margin-bottom: 0 !important;}
+  .my       { margin-top: $spacing !important; margin-bottom: $spacing !important; }
+  .my-tiny  { margin-top: $spacing-tiny !important; margin-bottom: $spacing-tiny !important; }
+  .my-small { margin-top: $spacing-small !important; margin-bottom: $spacing-small !important; }
+  .my-large { margin-top: $spacing-large !important; margin-bottom: $spacing-large !important; }
+  .my-huge  { margin-top: $spacing-huge !important; margin-bottom: $spacing-huge !important; }
+  .my-auto  { margin-top: auto !important; margin-bottom: auto !important; }
+  
+  /* Margin Left & Right */
+  .mx-0,
+  .mx-none  { margin-left: 0 !important; margin-right: 0 !important;}
+  .mx       { margin-left: $spacing !important; margin-right: $spacing !important; }
+  .mx-tiny  { margin-left: $spacing-tiny !important; margin-right: $spacing-tiny !important; }
+  .mx-small { margin-left: $spacing-small !important; margin-right: $spacing-small !important; }
+  .mx-large { margin-left: $spacing-large !important; margin-right: $spacing-large !important; }
+  .mx-huge  { margin-left: $spacing-huge !important; margin-right: $spacing-huge !important; }
+  .mx-auto  { margin-left: auto !important; margin-right: auto !important; }
+  
+  /* Padding all */
+  .p-0,
+  .p-none  { padding: 0 !important; }
+  .p       { padding: $spacing !important; }
+  .p-tiny  { padding: $spacing-tiny !important; }
+  .p-small { padding: $spacing-small !important; }
+  .p-large { padding: $spacing-large !important; }
+  .p-huge  { padding: $spacing-huge !important; }
+  
+  /* Padding top */
+  .pt-0,
+  .pt-none  { padding-top: 0 !important; }
+  .pt       { padding-top: $spacing !important; }
+  .pt-tiny  { padding-top: $spacing-tiny !important; }
+  .pt-small { padding-top: $spacing-small !important; }
+  .pt-large { padding-top: $spacing-large !important; }
+  .pt-huge  { padding-top: $spacing-huge !important; }
+  
+  /* Padding right */
+  .pr-0,
+  .pr-none  { padding-right: 0 !important; }
+  .pr       { padding-right: $spacing !important; }
+  .pr-tiny  { padding-right: $spacing-tiny !important; }
+  .pr-small { padding-right: $spacing-small !important; }
+  .pr-large { padding-right: $spacing-large !important; }
+  .pr-huge  { padding-right: $spacing-huge !important; }
+  
+  /* Padding bottom */
+  .pb-0,
+  .pb-none  { padding-bottom: 0 !important; }
+  .pb       { padding-bottom: $spacing !important; }
+  .pb-tiny  { padding-bottom: $spacing-tiny !important; }
+  .pb-small { padding-bottom: $spacing-small !important; }
+  .pb-large { padding-bottom: $spacing-large !important; }
+  .pb-huge  { padding-bottom: $spacing-huge !important; }
+  
+  /* Padding Left */
+  .pl-0,
+  .pl-none  { padding-left: 0 !important; }
+  .pl       { padding-left: $spacing !important; }
+  .pl-tiny  { padding-left: $spacing-tiny !important; }
+  .pl-small { padding-left: $spacing-small !important; }
+  .pl-large { padding-left: $spacing-large !important; }
+  .pl-huge  { padding-left: $spacing-huge !important; }
+  
+  /* Padding Top & Bottom */
+  .py-0,
+  .py-none  { padding-top: 0 !important; padding-bottom: 0 !important;}
+  .py       { padding-top: $spacing !important; padding-bottom: $spacing !important; }
+  .py-tiny  { padding-top: $spacing-tiny !important; padding-bottom: $spacing-tiny !important; }
+  .py-small { padding-top: $spacing-small !important; padding-bottom: $spacing-small !important; }
+  .py-large { padding-top: $spacing-large !important; padding-bottom: $spacing-large !important; }
+  .py-huge  { padding-top: $spacing-huge !important; padding-bottom: $spacing-huge !important; }
+  .py-auto  { padding-top: auto !important; padding-bottom: auto !important; }
+  
+  /* Padding Left & Right */
+  .px-0,
+  .px-none  { padding-left: 0 !important; padding-right: 0 !important;}
+  .px       { padding-left: $spacing !important; padding-right: $spacing !important; }
+  .px-tiny  { padding-left: $spacing-tiny !important; padding-right: $spacing-tiny !important; }
+  .px-small { padding-left: $spacing-small !important; padding-right: $spacing-small !important; }
+  .px-large { padding-left: $spacing-large !important; padding-right: $spacing-large !important; }
+  .px-huge  { padding-left: $spacing-huge !important; padding-right: $spacing-huge !important; }
+  .px-auto  { padding-left: auto !important; padding-right: auto !important; }
