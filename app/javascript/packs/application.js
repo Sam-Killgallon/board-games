@@ -11,3 +11,4 @@ import 'setup/flatpickr'
 import 'stylesheets/application.scss';
 
 import 'notifications';
+import 'tabs';
