@@ -135,7 +135,7 @@
   -->
   <div class="mt">
     <label>Unavailable games</label>
-    <% if @game_session.suitable_games.any? %>
+    <% if @game_session.unsuitable_games.any? %>
       <ul class="cards my-tiny mb">
         <% @game_session.unsuitable_games.each do |game| %>
           <div class="card card-disabled">
