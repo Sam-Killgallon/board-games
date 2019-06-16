@@ -11,7 +11,7 @@ gem 'mini_magick', '~> 4.9.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 6.0.0.beta2'
-gem 'sendgrid-ruby', '~> 5.3.0'
+gem 'sendgrid-ruby', '~> 6.0.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '>= 4.0.0'
 
@@ -40,5 +40,5 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers', '~> 4.0'
-  gem 'webdrivers', '~> 3.0'
+  gem 'webdrivers', '~> 4.0'
 end
