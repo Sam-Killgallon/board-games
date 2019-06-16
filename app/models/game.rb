@@ -35,4 +35,8 @@ class Game < ApplicationRecord
 
   scope :by_title, -> { order(:title) }
   scope :random, ->(count) { order(Arel.sql('RANDOM()')).limit(count) }
+
+  def box_image_thumbnail
+    box_image.variant(resize_to_fit: [120, 80])
+  end
 end
