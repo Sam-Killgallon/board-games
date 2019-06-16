@@ -8,7 +8,7 @@ class TextImageGenerator
 
   def render(string, output_path)
     MiniMagick::Tool::Convert.new do |image|
-      image.size       '450x300'
+      image.size       "#{width}x#{height}"
       image.background 'white'
       image.font       'fonts/Carter_One/CarterOne.ttf'
       image.gravity    'Center'
@@ -17,4 +17,8 @@ class TextImageGenerator
       image << output_path
     end
   end
+
+  private
+
+  attr_reader :width, :height
 end
