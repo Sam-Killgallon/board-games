@@ -3,6 +3,7 @@
 class Admin::GamesController < Admin::ApplicationController
   def index
     @games = Game.by_title
+    @showcase_games = Game.with_attached_box_image.random(4)
   end
 
   def show

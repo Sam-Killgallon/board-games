@@ -31,14 +31,14 @@
 
     <div class="tabs">
       <ul class="flex">
-        <li class="is-active">
-          <a data-toggle="tab" data-target="#invited">Invited</a>
+        <li class="is-active" data-toggle="tab" data-target="invited">
+          Invited
         </li>
-        <li>
-          <a data-toggle="tab" data-target="#attending">Attending</a>
+        <li data-toggle="tab" data-target="attending">
+          Attending
         </li>
-        <li>
-          <a data-toggle="tab" data-target="#declined">Declined</a>
+        <li data-toggle="tab" data-target="declined">
+          Declined
         </li>
       </ul>
     </div>
@@ -108,7 +108,7 @@
   <!-- Games where we have the right number of players -->
   <div class="mt">
     <label>Available games</label>
-    <% if @game_session.suitable_games.each %>
+    <% if @game_session.suitable_games.any? %>
       <ul class="cards my-tiny mb">
         <% @game_session.suitable_games.each do |game| %>
           <%= form_with model: @game_session, method: :patch, local: true do |form| %>
@@ -135,7 +135,7 @@
   -->
   <div class="mt">
     <label>Unavailable games</label>
-    <% if @game_session.suitable_games.each %>
+    <% if @game_session.unsuitable_games.any? %>
       <ul class="cards my-tiny mb">
         <% @game_session.unsuitable_games.each do |game| %>
           <div class="card card-disabled">

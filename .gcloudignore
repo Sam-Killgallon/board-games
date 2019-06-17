@@ -8,8 +8,6 @@
 # Ignore uploaded files in development.
 /storage/*
 
-/public/assets
-/public/packs*
 /node_modules
 yarn-error.log
 yarn-debug.log*
