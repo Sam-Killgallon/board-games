@@ -85,11 +85,11 @@ RSpec.describe 'GameSessions' do
     find('li', text: valid_game.title, exact_text: true).click_on 'Choose game'
     expect(page).to have_content("Chosen game: #{valid_game.title}")
 
-    target_date = 1.week.from_now
+    target_date = 3.days.from_now
     find('input#game_session_scheduled_at').click
     find("[aria-label=\"#{target_date.strftime('%B %e, %Y').squish}\"]", visible: false).click
     click_on 'Schedule'
-    expect(page).to have_content('Scheduled at: In 7 days')
+    expect(page).to have_content('Scheduled at: In 3 days')
   end
 
   it 'allows users to respond to game invitations' do
