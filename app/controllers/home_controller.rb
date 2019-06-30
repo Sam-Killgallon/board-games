@@ -4,6 +4,8 @@ class HomeController < ApplicationController
   def index
     @past_game_sessions     = past_game_sessions
     @upcoming_game_sessions = upcoming_game_sessions
+    today = Time.current.beginning_of_day..Time.current.end_of_day
+    @number_of_games_today = GameSession.where(scheduled_at: today).size
   end
 
   private

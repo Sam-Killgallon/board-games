@@ -1,0 +1,37 @@
+<div class="p">
+  <div class="text-center">
+    <%= link_to 'Create New Session', game_sessions_path, method: :post, class: %w[btn btn--ghost btn--grey mb-large] %>
+  </div>
+
+  <div class="grid grid--2">
+    <div class="card flex-grow" id="upcoming-game-sessions">
+      <div class="card__header">
+        <div>Upcoming game sessions</div>
+      </div>
+
+      <div class="card__body h-250">
+        <div><%= render upcoming_game_sessions %></div>
+      </div>
+
+      <div class="card__footer">
+        <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
+      </div>
+    </div>
+
+    <div class="card flex-grow" id="past-game-sessions">
+      <div class="card__header">
+        <div>Past game sessions</div>
+      </div>
+
+      <div class="card__body h-250">
+        <div>
+          <%= render past_game_sessions %>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <%= link_to 'View all past game sessions', past_game_sessions_path %>
+      </div>
+    </div>
+  </div>
+</div>

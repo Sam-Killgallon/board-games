@@ -8,6 +8,12 @@
     font-weight: 600;
   }
 
+  &__footer {
+    padding: $spacing;
+    border-top: 1px solid $color-grey-lighter;
+    margin: 0;
+  }
+
   &__title, &__title a {
     font-size: 1.15rem;
     font-weight: 600;

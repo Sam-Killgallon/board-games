@@ -5,44 +5,14 @@
   </div>
 </div>
 
+<h3 class="text-center"><%= @number_of_games_today %> games are being played today!</h3>
+
 <% if user_signed_in? %>
-
-  <div class="p">
-    <div class="text-center">
-      <%= link_to 'Create New Session', game_sessions_path, method: :post, class: %w[btn btn--ghost btn--grey mb-large] %>
-    </div>
-
-    <div class="grid grid--2">
-      <div class="card flex-grow" id="upcoming-game-sessions">
-        <div class="card__header">
-          <div>Upcoming game sessions</div>
-        </div>
-
-        <div class="card__body h-250 overflow-y-scroll">
-          <div>
-            <%= render @upcoming_game_sessions %>
-          </div>
-          <div>
-            <%= link_to 'View all upcoming game sessions', upcoming_game_sessions_path %>
-          </div>
-        </div>
-      </div>
-
-      <div class="card flex-grow" id="past-game-sessions">
-        <div class="card__header">
-          <div>Past game sessions</div>
-        </div>
-
-        <div class="card__body h-250 overflow-y-scroll">
-          <div>
-            <%= render @past_game_sessions %>
-          </div>
-          <div>
-            <%= link_to 'View all past game sessions', past_game_sessions_path %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <%=
+    render 'user_dashboard',
+      upcoming_game_sessions: @upcoming_game_sessions,
+      past_game_sessions:     @past_game_sessions
+  %>
+<% else %>
+  <%= render 'landing_page' %>
 <% end %>
