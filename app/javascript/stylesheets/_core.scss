@@ -51,3 +51,8 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+// Add some space at the top to prevent the navbar overlapping the top of the content
+.content {
+  margin-top: 2rem;
+}
