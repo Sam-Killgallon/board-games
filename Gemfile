@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '~> 2.6.0'
 
-gem 'devise', '~> 4.6'
+gem 'devise', '~> 4.7'
 gem 'google-cloud-storage', '~> 1.18', require: false
 gem 'image_processing', '~> 1.9'
 gem 'mini_magick', '~> 4.9.4'
