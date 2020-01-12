@@ -11,7 +11,7 @@ gem 'image_processing', '~> 1.9'
 gem 'mini_magick', '~> 4.10.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
-gem 'rails', '~> 6.0.0'
+gem 'rails', '= 6.0.0'
 gem 'sendgrid-ruby', '~> 6.0.0'
 gem 'turbolinks', '~> 5'
 gem 'webpacker', '>= 4.0.0'
@@ -27,13 +27,14 @@ group :development, :test do
   gem 'byebug', '~> 11.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
   gem 'pry-rails', '~> 0.3'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 4.0'
 end
 
 group :development do
   gem 'annotate', '~> 3.0'
   gem 'listen', '~> 3.2.1'
-  gem 'rubocop', '~> 0.64'
+  gem 'rubocop', '~> 0.82', require: false
+  gem 'rubocop-rails', '~> 2.5.2', require: false
   gem 'spring', '~> 2.0'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

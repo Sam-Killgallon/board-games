@@ -29,7 +29,7 @@ WORKDIR /app
 # will be cached unless changes to one of those two files
 # are made.
 COPY Gemfile Gemfile.lock ./
-RUN gem install bundler && bundle install --jobs 8 --frozen && rm /usr/local/bundle/config
+RUN gem install bundler:1.17.3 && bundle install --jobs 8 --frozen && rm /usr/local/bundle/config
 
 # Copy the main application.
 COPY . ./
