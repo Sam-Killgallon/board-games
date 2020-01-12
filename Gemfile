@@ -10,7 +10,7 @@ gem 'google-cloud-storage', '~> 1.18', require: false
 gem 'image_processing', '~> 1.9'
 gem 'mini_magick', '~> 4.9.4'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.0'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.0'
 gem 'sendgrid-ruby', '~> 6.0.0'
 gem 'turbolinks', '~> 5'
