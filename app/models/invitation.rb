@@ -25,7 +25,7 @@
 #
 
 class Invitation < ApplicationRecord
-  enum rsvp: %i[not_responded attending declined]
+  enum rsvp: { not_responded: 0, attending: 1, declined: 2 }
   belongs_to :user
   belongs_to :game_session
 end

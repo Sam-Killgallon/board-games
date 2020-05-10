@@ -1,8 +1,16 @@
+---
+require:
+  - rubocop-rails
+
 AllCops:
+  NewCops: enable
   Exclude:
     - bin/**/*
     - db/**/*
     - node_modules/**/*
+    # These are mostly managed by Rails. Fixing violations causes it to be harder to diff them when
+    # running rails app:update
+    - config/**/*
 
 Style/Documentation:
   Enabled: false
@@ -10,15 +18,11 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Rails:
-  Enabled: true
-
 Metrics/LineLength:
   Max: 120
 
 Metrics/BlockLength:
   Exclude:
-    - test/**/*
     - spec/**/*
 
 Lint/AmbiguousBlockAssociation:

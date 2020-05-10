@@ -3,7 +3,6 @@
 namespace :users do
   desc 'Create default admin user'
   task create_admin: :environment do
-
     email    = ENV['ADMIN_USER']
     password = ENV['ADMIN_PASSWORD']
 
