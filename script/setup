@@ -1,0 +1,24 @@
+#!/bin/bash
+
+set -euo pipefail
+
+function say {
+  green="\033[32m"
+  default="\033[39m"
+  echo -e "${green}------------> $@ <------------${default}\n"
+}
+
+say "Cleaning the database and storage"
+rm -rf storage
+docker-compose down -v
+
+say "Building containers"
+docker-compose build
+
+say "Installing node_modules"
+docker-compose run --rm web yarn
+
+say "Generating fake development data"
+docker-compose run \
+               --rm -e ADMIN_USER="admin@example.com" -e ADMIN_PASSWORD="password" web \
+               rails db:setup users:create_admin demo:generate_data

@@ -1,2 +1,1 @@
-//= link_tree ../images
-//= link_directory ../stylesheets .css
+// Empty file to satisfy sprockets during 'rails assets:precompile'
