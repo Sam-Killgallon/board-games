@@ -3,46 +3,74 @@ name: Pull request
 on: [push, pull_request]
 
 jobs:
-  build_image:
-    name: Build development image
+  build_web_image:
+    name: Build development web image
     runs-on: ubuntu-18.04
     outputs:
       image_tag: ${{ steps.set_image_tag.outputs.image_tag }}
     steps:
     - uses: actions/checkout@v2
 
-    - name: Login to dockerhub
-      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-
     - id: set_image_tag
       run: |
         BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
-        echo "::set-output name=image_tag::samkillgallon/board-games:$BRANCH_NAME"
+        # Convert everything to lowercase, as docker tags cannot contain uppercase characters
+        REGISTRY_NAME=$(echo "docker.pkg.github.com/$GITHUB_REPOSITORY/web:$BRANCH_NAME" | tr '[:upper:]' '[:lower:]')
+        echo "::set-output name=image_tag::$REGISTRY_NAME"
+
+    - name: Login to github packages
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+
+    # So that it can be used as a cache to avoid rebuilding layers that have not changed
+    - name: Pull image if it already exists
+      run: docker pull ${{ steps.set_image_tag.outputs.image_tag }} || true
 
     - name: Build image
-      run: docker build . --tag ${{ steps.set_image_tag.outputs.image_tag }} --cache-from=${{ steps.set_image_tag.outputs.image_tag }} --target development --build-arg BUILDKIT_INLINE_CACHE=1
+      run: docker build . --tag ${{ steps.set_image_tag.outputs.image_tag }} --cache-from=${{ steps.set_image_tag.outputs.image_tag }} --target development
 
     - name: Push image
       run: docker push ${{ steps.set_image_tag.outputs.image_tag }}
 
   lint:
     name: Lint code
-    needs: build_image
+    needs: build_web_image
     runs-on: ubuntu-18.04
     steps:
-    - name: Login to dockerhub
-      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Login to github packages
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 
     - name: Run rubocop
-      run: docker run --rm ${{ needs.build_image.outputs.image_tag }} rubocop
+      run: docker run --rm ${{ needs.build_web_image.outputs.image_tag }} rubocop
 
   test:
     name: Run tests
-    needs: build_image
+    needs: build_web_image
     runs-on: ubuntu-18.04
+    services:
+      # Label used to access the service container
+      postgres:
+        image: postgres:11.2
+        ports:
+          - "5432:5432"
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
-    - name: Login to dockerhub
-      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+    - name: Login to github packages
+      run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 
+    # Using the 'network=host' option as a hacky workaround since we cannot run containers from
+    # github packages using the 'container' option. Therefore we need to manually run the container
+    # in a way that makes the services from the network configured by the 'services' key above
+    # available
     - name: Run tests
-      run: docker run --rm ${{ needs.build_image.outputs.image_tag }} rspec
+      run: |
+        docker run --rm \
+        --network=host \
+        -e DATABASE_HOST=localhost \
+        -e DATABASE_USERNAME=postgres \
+        ${{ needs.build_web_image.outputs.image_tag }} \
+        rails db:setup spec
