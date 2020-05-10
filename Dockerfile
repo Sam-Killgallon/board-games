@@ -1,47 +1,59 @@
-FROM ruby:2.6.5
+FROM ruby:2.6.5-slim-buster as base
 
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
-    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-    echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list && \
-    apt-get update && \
-    apt-get install -yf \
-      # For running javascript
-      nodejs \
-      # For javascript package installation
-      yarn \
-      # For the database
-      postgresql-client \
-      # For building native extensions
-      build-essential \
-      # For generating placeholder images
-      imagemagick \
-      # For chromedriver, which gets installed by the 'chromedriver-helper' gem
-      libnss3 \
-      # For browser tests
-      chromium \
-      vim
+# build-essential - For compiling native dependencies
+# curl            - For installing nodejs + yarn
+# gnupg2          - For installing nodejs + yarn
+# imagemagick     - For generating thumbnails and manipulating images
+# nodejs          - For compiling JS with webpacker
+# libpq-dev       - For installing 'pg' gem to talk to postgresql
+# tzdata          - For time zone support in rails
+# yarn            - For installing JS packages
+ARG PRODUCTION_PACKAGES="build-essential imagemagick nodejs libpq-dev tzdata yarn"
+ARG APP_ROOT=/app
 
-RUN mkdir -p /app
-WORKDIR /app
+RUN apt-get update \
+    && apt-get install -y curl gnupg2 \
+    && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+    && echo "deb https://dl.yarnpkg.com/debian/ stable main" > /etc/apt/sources.list.d/yarn.list \
+    && apt-get update \
+    && apt-get -y install ${PRODUCTION_PACKAGES}
 
-# Copy the Gemfile as well as the Gemfile.lock and install
-# the RubyGems. This is a separate step so the dependencies
-# will be cached unless changes to one of those two files
-# are made.
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler:1.17.3 && bundle install --jobs 8 --frozen && rm /usr/local/bundle/config
+# Required while on ruby2.6, can be removed in 2.7
+RUN gem install bundler:2.1.4
 
-# Copy the main application.
-COPY . ./
+RUN mkdir ${APP_ROOT}
+WORKDIR ${APP_ROOT}
 
-# Only precompile assets when building for production, workaround
-# SECRET_KEY_BASE being required when trying to compile assets
-ARG RAILS_ENV=production
-RUN (if [ "$RAILS_ENV" = "production" ] ; then SECRET_KEY_BASE=`bundle exec rails secret` bundle exec rails assets:precompile ; else true ; fi)
-
-# The main command to run when the container starts. Also
-# tell the Rails dev server to bind to all interfaces by
-# default.
 ENTRYPOINT ["docker_scripts/entrypoint.sh"]
-# Will bind to PORT environment variable, or 3000 by default
+# Will bind to PORT evironment variable, or 3000 by default
 CMD ["rails", "server", "-b", "0.0.0.0"]
+
+FROM base as development
+
+# bash - For a shell
+ARG DEVELOPMENT_PACKAGES="bash"
+# chromium + chromium-driver - For running headless chrome tests
+ARG TESTING_PACKAGES="chromium chromium-driver"
+
+RUN apt-get update && apt-get -y install ${DEVELOPMENT_PACKAGES} ${TESTING_PACKAGES}
+
+COPY Gemfile Gemfile.lock ./
+RUN bundle install --jobs 8 --retry 3 \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
+
+FROM base as production
+
+COPY Gemfile Gemfile.lock ./
+
+RUN BUNDLE_WITHOUT="development test" bundle install --jobs 8 --retry 3 \
+    && bundle clean --force \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
+
+COPY . ./
+ENV RAILS_ENV production
+RUN SECRET_KEY_BASE=$(rails secret) rails assets:precompile
