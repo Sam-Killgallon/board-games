@@ -3,8 +3,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '~> 2.6.0'
+ruby '~> 2.6.5'
 
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', '>= 1.1.0', require: false
 gem 'devise', '~> 4.7'
 gem 'google-cloud-storage', '~> 1.18', require: false
 gem 'image_processing', '~> 1.9'
@@ -21,8 +23,6 @@ group :production do
 end
 
 group :development, :test do
-  # Reduces boot times through caching; required in config/boot.rb
-  gem 'bootsnap', '>= 1.1.0', require: false
   gem 'bullet', '~> 6.1.0'
   gem 'byebug', '~> 11.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '~> 5.0'
@@ -42,5 +42,5 @@ end
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'shoulda-matchers', '~> 4.0'
-  gem 'webdrivers', '~> 4.0'
+  gem 'selenium-webdriver', '~> 3.142'
 end
