@@ -25,6 +25,8 @@ RUN gem install bundler:2.1.4
 RUN mkdir ${APP_ROOT}
 WORKDIR ${APP_ROOT}
 
+COPY . ./
+
 ENTRYPOINT ["docker_scripts/entrypoint.sh"]
 # Will bind to PORT evironment variable, or 3000 by default
 CMD ["rails", "server", "-b", "0.0.0.0"]

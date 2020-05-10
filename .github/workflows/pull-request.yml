@@ -1,0 +1,36 @@
+---
+name: Pull request
+on: [push, pull_request]
+jobs:
+  build_image:
+    name: Build development image
+    runs-on: ubuntu-18.04
+    outputs:
+      image_tag: ${{ steps.set_image_tag.outputs.image_tag }}
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login to dockerhub
+      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - id: set_image_tag
+      run: |
+        BRANCH_NAME=$(echo ${GITHUB_REF} | sed -e "s/refs\/heads\///g")
+        echo "::set-output name=image_tag::samkillgallon/board-games:$BRANCH_NAME"
+
+    - name: Build image
+      run: docker build . --tag ${{ steps.set_image_tag.outputs.image_tag }} --cache-from=${{ steps.set_image_tag.outputs.image_tag }} --target development --build-arg BUILDKIT_INLINE_CACHE=1
+
+    - name: Push image
+      run: docker push ${{ steps.set_image_tag.outputs.image_tag }}
+
+  lint:
+    name: Lint code
+    needs: build_image
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Login to dockerhub
+      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Run rubocop
+      run: docker run --rm ${{ needs.build_image.outputs.image_tag }} rubocop
