@@ -1,6 +1,7 @@
 ---
 name: Pull request
 on: [push, pull_request]
+
 jobs:
   build_image:
     name: Build development image
@@ -34,3 +35,14 @@ jobs:
 
     - name: Run rubocop
       run: docker run --rm ${{ needs.build_image.outputs.image_tag }} rubocop
+
+  test:
+    name: Run tests
+    needs: build_image
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Login to dockerhub
+      run: docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Run tests
+      run: docker run --rm ${{ needs.build_image.outputs.image_tag }} rspec

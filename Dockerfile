@@ -46,6 +46,9 @@ RUN bundle install --jobs 8 --retry 3 \
     && find /usr/local/bundle/gems/ -name "*.c" -delete \
     && find /usr/local/bundle/gems/ -name "*.o" -delete
 
+COPY package.json yarn.lock ./
+RUN yarn install
+
 FROM base as production
 
 COPY Gemfile Gemfile.lock ./
