@@ -7,7 +7,7 @@ ruby '~> 2.6.0'
 
 gem 'devise', '~> 4.7'
 gem 'google-cloud-storage', '~> 1.18', require: false
-gem 'image_processing', '~> 1.9'
+gem 'image_processing', '~> 1.12'
 gem 'mini_magick', '~> 4.9.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
